@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页生成工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        #toolbar {
+            margin-bottom: 10px;
+        }
+
+        button, input, select {
+            margin-right: 5px;
+        }
+
+        #editor {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 300px;
+            background-color: white;
+            outline: none;
+        }
+
+        #backgroundColorPicker, #fontColorPicker {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>网页生成工具</h1>
+
+    <!-- 工具栏 -->
+    <div id="toolbar">
+        <button onclick="format('bold')">粗体</button>
+        <button onclick="format('italic')">斜体</button>
+        <button onclick="format('underline')">下划线</button>
+        <button onclick="insertImage()">插入图片</button>
+        <button onclick="createLink()">插入链接</button>
+
+        <!-- 字体选择 -->
+        <label for="fontFamily">字体:</label>
+        <select id="fontFamily" onchange="setFontFamily()">
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+        </select>
+
+        <!-- 字体大小 -->
+        <label for="fontSize">字体大小:</label>
+        <select id="fontSize" onchange="setFontSize()">
+            <option value="1">小</option>
+            <option value="2">正常</option>
+            <option value="3">大</option>
+            <option value="4">较大</option>
+            <option value="5">更大</option>
+        </select>
+
+        <!-- 字体颜色 -->
+        <label for="fontColorPicker">字体颜色:</label>
+        <input type="color" id="fontColorPicker" onchange="setFontColor()">
+
+        <!-- 对齐方式 -->
+        <button onclick="format('justifyLeft')">左对齐</button>
+        <button onclick="format('justifyCenter')">居中</button>
+        <button onclick="format('justifyRight')">右对齐</button>
+
+        <!-- 背景颜色 -->
+        <label for="backgroundColorPicker">背景颜色:</label>
+        <input type="color" id="backgroundColorPicker" value="#ffffff" onchange="setBackgroundColor()">
+
+        <!-- 导出 -->
+        <button onclick="exportHTML()">导出 HTML</button>
+    </div>
+
+    <!-- 可编辑区域 -->
+    <div id="editor" contenteditable="true">
+        
+    </div>
+
+    <script>
+        // 格式化文本
+        function format(command, value = null) {
+            document.execCommand(command, false, value);
+        }
+
+        // 插入图片
+        function insertImage() {
+            const url = prompt('请输入图片 URL');
+            if (url) {
+                document.execCommand('insertImage', false, url);
+            }
+        }
+
+        // 插入链接
+        function createLink() {
+            const url = prompt('请输入链接 URL');
+            if (url) {
+                document.execCommand('createLink', false, url);
+            }
+        }
+
+        // 设置字体
+        function setFontFamily() {
+            const fontFamily = document.getElementById('fontFamily').value;
+            document.execCommand('fontName', false, fontFamily);
+        }
+
+        // 设置字体大小
+        function setFontSize() {
+            const fontSize = document.getElementById('fontSize').value;
+            document.execCommand('fontSize', false, fontSize);
+        }
+
+        // 设置字体颜色
+        function setFontColor() {
+            const fontColor = document.getElementById('fontColorPicker').value;
+            document.execCommand('foreColor', false, fontColor);
+        }
+
+        // 设置背景颜色
+        function setBackgroundColor() {
+            const color = document.getElementById('backgroundColorPicker').value;
+            document.getElementById('editor').style.backgroundColor = color;
+        }
+
+        // 导出 HTML 文件
+        function exportHTML() {
+            const editorContent = document.getElementById('editor').innerHTML;
+            const backgroundColor = document.getElementById('backgroundColorPicker').value;
+            const content = `
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导出的文章</title>
+    <style>
+        body { background-color: ${backgroundColor}; }
+    </style>
+</head>
+<body>
+    ${editorContent}
+</body>
+</html>
+`;
+            const blob = new Blob([content], { type: 'text/html' });
+            const a = document.createElement('a');
+            const fileName = prompt('请输入保存文件名（例如: myPage.html）', 'article.html');
+            if (fileName) {
+                a.href = URL.createObjectURL(blob);
+                a.download = fileName;
+                a.click();
+            }
+        }
+    </script>
+
+</body>
+</html>
