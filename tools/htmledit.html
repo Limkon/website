@@ -83,7 +83,7 @@
 
     <!-- 可编辑区域 -->
     <div id="editor" contenteditable="true">
-        
+        在这里写文章...
     </div>
 
     <script>
@@ -136,13 +136,17 @@
         function exportHTML() {
             const editorContent = document.getElementById('editor').innerHTML;
             const backgroundColor = document.getElementById('backgroundColorPicker').value;
+
+            // 获取第一行作为标题
+            const firstLine = document.getElementById('editor').innerText.split('\n')[0] || '我的网页';
+
             const content = `
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>导出的文章</title>
+    <title>${firstLine}</title>
     <style>
         body { background-color: ${backgroundColor}; }
     </style>
