@@ -13,13 +13,14 @@ body {
 h1 {
     text-align: center;
     color: #333;
-    margin-top: 20px; /* 增加上边距 */
+    margin-top: 10px; /* 减少上边距 */
 }
 
 nav {
     background-color: #007BFF;
     padding: 10px;
     text-align: center;
+    margin-bottom: 5px; /* 减少下边距 */
 }
 
 nav ul {
@@ -74,4 +75,36 @@ nav a:hover {
 
 .container a:hover {
     text-decoration: underline;
+}
+
+/* 子网页标题的三列布局 */
+ul.subpage-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 三列布局 */
+    gap: 20px; /* 每列之间的间距 */
+    padding: 0;
+    list-style: none;
+    margin: 20px 0; /* 调整上边距，缩小与导航的距离 */
+    text-align: center; /* 文本居中 */
+}
+
+ul.subpage-list li {
+    margin: 10px 0;
+}
+
+ul.subpage-list li a {
+    text-decoration: none;
+    color: #fff; /* 白色文字 */
+    background-color: #007BFF; /* 蓝色背景 */
+    padding: 15px 25px;
+    border-radius: 25px; /* 圆角按钮 */
+    font-size: 18px;
+    font-weight: 600;
+    display: block; /* 填满整个列表项 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 添加悬停效果 */
+}
+
+ul.subpage-list li a:hover {
+    background-color: #0056b3; /* 悬停时的深蓝色背景 */
+    box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.3); /* 添加阴影 */
 }
