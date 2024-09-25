@@ -1,0 +1,22 @@
+[
+    { "name": "YouTube", "url": "https://www.youtube.com/" },
+    { "name": "Vimeo", "url": "https://vimeo.com/" },
+    { "name": "Dailymotion", "url": "https://www.dailymotion.com/" },
+    { "name": "Twitch", "url": "https://www.twitch.tv/" },
+    { "name": "Bilibili", "url": "https://www.bilibili.com/" },
+    { "name": "PeerTube，去中心化开源视频平台", "url": "https://joinpeertube.org/" },
+    { "name": "Veoh", "url": "https://www.veoh.com/" },
+    { "name": "Odysee，区块链视频平台", "url": "https://odysee.com/" },
+    { "name": "Metacafe", "url": "http://www.metacafe.com/" },
+    { "name": "BitChute，去中心化视频分享平台", "url": "https://www.bitchute.com/" },
+    { "name": "Veooh TV", "url": "https://veoh.tv/" },
+    { "name": "Rumble，注重自由表达的视频平台", "url": "https://rumble.com/" },
+    { "name": "VidLii，经典YouTube风格视频平台", "url": "https://www.vidlii.com/" },
+    { "name": "Tubi，免费观看电影和电视节目", "url": "https://tubitv.com/" },
+    { "name": "Crackle，提供免费电影和电视剧", "url": "https://www.crackle.com/" },
+    { "name": "Popcornflix，免费的电影和电视剧", "url": "https://www.popcornflix.com/" },
+    { "name": "Pluto TV，免费流媒体电视和电影", "url": "https://pluto.tv/" },
+    { "name": "IMDb TV，免费在线电影和电视节目", "url": "https://www.imdb.com/tv/" },
+    { "name": "Kanopy，免费电影资源", "url": "https://www.kanopy.com/" },
+    { "name": "MX Player，流媒体视频和电视剧", "url": "https://www.mxplayer.in/" }
+]

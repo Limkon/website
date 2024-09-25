@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>免费资源网</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 样式调整 */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0); /* 渐变背景 */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b); /* 渐变导航栏背景 */
+            padding: 40px 0;
+            color: white;
+        }
+
+        h1 {
+            margin: 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .preview-container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .preview {
+            width: 300px;
+            height: 200px;
+            margin: 10px;
+            border-radius: 8px; /* 添加圆角 */
+            padding: 15px;
+            background: linear-gradient(135deg, #f0f4f8, #e0e7ec); /* 渐变背景色，浅蓝和浅灰 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+            color: #333;
+            overflow: hidden;
+        }
+
+        .preview a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="container">
+            <h1>免费资源网</h1>
+            <div id="navbar"></div> <!-- 导航栏加载位置 -->
+        </div>
+    </header>
+
+    <!-- 预览部分，显示在导航栏下方 -->
+    <div class="preview-container container">
+        <div class="preview">
+            <h2>免费网盘</h2>
+            <p>这里是免费网盘的简要介绍。提供多种免费存储服务。</p>
+            <a href="pan/wangpan.html">查看详情</a>
+        </div>
+        <div class="preview">
+            <h2>免费电子邮箱</h2>
+            <p>提供免费的电子邮件服务，便捷的管理功能和大容量存储空间。</p>
+            <a href="email/you.html">查看详情</a>
+        </div>
+        <div class="preview">
+            <h2>免费域名</h2>
+            <p>获取免费的域名注册服务，轻松建立自己的网站。</p>
+            <a href="domain/yumian.html">查看详情</a>
+        </div>
+        <div class="preview">
+            <h2>免费羊毛</h2>
+            <p>搜罗网络中的各种免费活动和优惠，薅羊毛拿好礼。</p>
+            <a href="sleep/yang.html">查看详情</a>
+        </div>
+        <div class="preview">
+            <h2>免费电影</h2>
+            <p>免费看高清电影，海量资源随时观看，享受视听盛宴。</p>
+            <a href="movie/mov.html">查看详情</a>
+        </div>
+    </div>
+    
+    <!-- 访问人数标题 -->
+    <div style="text-align: center; margin-top: 20px; position: relative;">
+        <h2 style="font-size: 24px;">访问人数</h2>
+        <div class="statcounter" style="position: absolute; left: 50%; transform: translateX(-50%);">
+            <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+                <img class="statcounter" src="https://c.statcounter.com/13039053/0/8f2c3505/0/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade" style="width: 150px; height: auto;">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 加载导航栏
+        fetch('./navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+</body>
+</html>

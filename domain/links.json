@@ -1,0 +1,12 @@
+[
+    { "name": "eu.org域名", "url": "https://nic.eu.org/" },
+    { "name": "nom.za域名", "url": "https://secure.nom.za/" },
+    { "name": "Freenom，免费.tk/.ml/.ga/.cf/.gq域名", "url": "https://www.freenom.com/" },
+    { "name": "InfinityFree，免费子域名", "url": "https://www.infinityfree.net/" },
+    { "name": "Dot.tk，免费.tk域名", "url": "https://www.dot.tk/" },
+    { "name": "Biz.nf，免费.co.nf域名", "url": "https://www.biz.nf/" },
+    { "name": "AwardSpace，免费.eu5.net子域名", "url": "https://www.awardspace.com/free-domain/" },
+    { "name": "No-IP，免费动态DNS子域名", "url": "https://www.noip.com/" },
+    { "name": "Dynu，免费动态DNS子域名", "url": "https://www.dynu.com/" },
+    { "name": "DuckDNS，免费动态DNS子域名", "url": "https://www.duckdns.org/" }
+]

@@ -1,0 +1,13 @@
+[
+    { "name": "Gmail", "url": "https://mail.google.com/" },
+    { "name": "Outlook", "url": "https://outlook.live.com/" },
+    { "name": "Yahoo Mail", "url": "https://mail.yahoo.com/" },
+    { "name": "ProtonMail，注重隐私保护", "url": "https://proton.me/mail" },
+    { "name": "Zoho Mail", "url": "https://www.zoho.com/mail/" },
+    { "name": "Tutanota，安全加密邮件服务", "url": "https://tutanota.com/" },
+    { "name": "GMX Mail", "url": "https://www.gmx.com/" },
+    { "name": "Yandex Mail", "url": "https://mail.yandex.com/" },
+    { "name": "Mail.com，提供多种域名后缀", "url": "https://www.mail.com/" },
+    { "name": "Tempmail，临时邮箱服务", "url": "https://temp-mail.org/" },
+    { "name": "Disroot，注重隐私的去中心化服务", "url": "https://disroot.org/en/services/email" }
+]

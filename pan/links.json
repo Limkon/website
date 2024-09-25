@@ -1,0 +1,20 @@
+[
+    { "name": "proton网盘，最强保密网盘", "url": "https://proton.me/drive" },
+    { "name": "terabox，海外版度盘", "url": "https://www.terabox.com/" },
+    { "name": "offcloud，可实现离线下载", "url": "https://offcloud.com/" },
+    { "name": "Google Drive，谷歌云盘", "url": "https://drive.google.com/" },
+    { "name": "Dropbox，经典云盘服务", "url": "https://www.dropbox.com/" },
+    { "name": "OneDrive，微软的云存储服务", "url": "https://onedrive.live.com/" },
+    { "name": "Mega.nz，提供高隐私的加密存储", "url": "https://mega.nz/" },
+    { "name": "pCloud，欧洲数据安全网盘", "url": "https://www.pcloud.com/" },
+    { "name": "iCloud，苹果生态的云盘服务", "url": "https://www.icloud.com/" },
+    { "name": "Box，企业级网盘解决方案", "url": "https://www.box.com/" },
+    { "name": "Sync.com，注重隐私和加密", "url": "https://www.sync.com/" },
+    { "name": "Yandex Disk，俄罗斯本土网盘服务", "url": "https://disk.yandex.com/" },
+    { "name": "MediaFire，便捷的文件分享服务", "url": "https://www.mediafire.com/" },
+    { "name": "Nextcloud，自托管云盘解决方案", "url": "https://nextcloud.com/" },
+    { "name": "Internxt，安全加密的分布式云盘", "url": "https://internxt.com/" },
+    { "name": "Koofr，多平台云盘聚合服务", "url": "https://koofr.eu/" },
+    { "name": "Tresorit，端到端加密的安全存储", "url": "https://tresorit.com/" },
+    { "name": "Degoo，提供超大存储空间", "url": "https://cloud.degoo.com/drive-cv95v6hmwyiy" }
+]
