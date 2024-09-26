@@ -64,12 +64,15 @@ nav a:hover {
 
 .container li {
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px; /* 增加一号字体 */
+    font-weight: bold; /* 字体加粗 */
 }
 
 .container a {
     text-decoration: none;
     color: #007BFF;
+    font-size: 18px; /* 增加一号字体 */
+    font-weight: bold; /* 字体加粗 */
 }
 
 .container a:hover {
