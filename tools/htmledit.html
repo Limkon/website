@@ -73,6 +73,9 @@
         <button onclick="format('justifyCenter')">居中</button>
         <button onclick="format('justifyRight')">右对齐</button>
 
+        <!-- 首行缩进 -->
+        <button onclick="indentFirstLine()">首行缩进</button>
+
         <!-- 背景颜色 -->
         <label for="backgroundColorPicker">背景颜色:</label>
         <input type="color" id="backgroundColorPicker" value="#ffffff" onchange="setBackgroundColor()">
@@ -132,6 +135,15 @@
             document.getElementById('editor').style.backgroundColor = color;
         }
 
+        // 首行缩进功能
+        function indentFirstLine() {
+            document.execCommand('formatBlock', false, 'p');
+            const paragraphs = document.querySelectorAll('#editor p');
+            paragraphs.forEach(p => {
+                p.style.textIndent = '2em'; // 设置首行缩进
+            });
+        }
+
         // 导出 HTML 文件
         function exportHTML() {
             const editorContent = document.getElementById('editor').innerHTML;
@@ -149,6 +161,7 @@
     <title>${firstLine}</title>
     <style>
         body { background-color: ${backgroundColor}; }
+        p { text-indent: 2em; } /* 导出时包含首行缩进 */
     </style>
 </head>
 <body>
