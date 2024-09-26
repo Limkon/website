@@ -69,12 +69,35 @@
                 console.error('Error loading links:', error);
             });
     </script>
-	
-	 <!-- 子网页标题三列布局 -->
-    <ul class="subpage-list">
-        <li><a href="../note/nvli.html" target="_blank">一、努力</a></li>        
-        <!-- 添加更多项目时继续添加li -->
-    </ul>
+    
+    <!-- 子网页标题三列布局 -->
+    <ul class="subpage-list"></ul> <!-- 用于动态加载 note 文件夹中的文件 -->
+
+    <script>
+        // 获取 note 文件夹中的所有文件，并动态生成链接列表
+        fetch('/api/notes')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(files => {
+                const subpageList = document.querySelector('.subpage-list');
+                let index = 1;
+
+                files.forEach(file => {
+                    const fileNameWithoutExtension = file.replace('.html', ''); // 去掉扩展名
+                    const li = document.createElement('li');
+                    li.innerHTML = `${index}. <a href="../note/${file}" target="_blank">${fileNameWithoutExtension}</a>`;
+                    subpageList.appendChild(li); // 将链接添加到子网页列表中
+                    index++;
+                });
+            })
+            .catch(error => {
+                console.error('Error loading notes:', error);
+            });
+    </script>
 	
 </body>
 </html>
