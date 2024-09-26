@@ -9,7 +9,7 @@ const PORT = 3000;
 app.use(express.static('public'));
 
 // 获取 note 文件夹中的所有文件
-app.get('/api/notes', (req, res) => {
+app.get('../notes', (req, res) => {
     const notesDir = path.join(__dirname, 'public/note');
     
     // 读取 note 文件夹中的文件名
