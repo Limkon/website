@@ -1,0 +1,36 @@
+name: Fetch Sub List
+
+# 设置这个工作流的触发时间，使用 cron 表达式设置为每天运行一次
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 这个 cron 表示每天的午夜（00:00 UTC）运行一次
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  fetch-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 检出代码仓库
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 下载文件
+    - name: Download list.txt
+      run: |
+        curl -o list.txt https://raw.githubusercontent.com/Limkon/AutoMergePublicNodes/refs/heads/master/list.txt
+
+    # 创建/更新 sublist.txt 文件，并写入下载的内容
+    - name: Update sublist.txt
+      run: |
+        mkdir -p tools/sub
+        cat list.txt > tools/sub/sublist.txt
+
+    # 提交更改
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add tools/sub/sublist.txt
+        git commit -m "Update sublist.txt with the latest content"
+        git push
