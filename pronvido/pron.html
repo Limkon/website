@@ -1,68 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>视频播放列表</title>
+    <title>免费视频网站</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- 确保路径正确 -->
     <style>
-        #videoPlayerContainer {
-            display: none; /* 初始隐藏视频播放器 */
-            margin-top: 20px;
+        /* 暗黑主题样式 */
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
-        .video-item {
-            cursor: pointer;
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+        }
+        h1 {
+            color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .column {
+            width: 30%;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
             margin-bottom: 10px;
-            color: blue;
+        }
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        a:hover {
             text-decoration: underline;
         }
-        .video-item:hover {
-            color: darkblue;
+        #videoPlayer {
+            width: 80%;
+            height: 400px;
+            margin: 20px auto;
+            display: block;
+            background-color: black;
+        }
+        #navbar {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <h1>免费视频网站</h1>
+        <div id="navbar"></div> <!-- 用于加载导航栏 -->
+    </header>
 
-<h2>视频播放列表</h2>
-<div id="videoList"></div>
-
-<div id="videoPlayerContainer">
-    <video id="videoPlayer" width="600" controls>
+    <!-- 视频播放器 -->
+    <video id="videoPlayer" controls>
         <source id="videoSource" src="" type="video/mp4">
-        您的浏览器不支持视频播放。
+        您的浏览器不支持 HTML5 视频播放。
     </video>
-</div>
 
-<script>
-    // 加载 links.json 文件并生成视频列表
-    fetch('./links.json')
-        .then(response => response.json())
-        .then(data => {
-            const videoList = document.getElementById('videoList');
-            const videoPlayerContainer = document.getElementById('videoPlayerContainer');
+    <div id="links" class="container">
+        <div class="column">
+            <ul id="column1"></ul>
+        </div>
+        <div class="column">
+            <ul id="column2"></ul>
+        </div>
+        <div class="column">
+            <ul id="column3"></ul>
+        </div>
+    </div>
+
+    <script>
+        // 加载导航栏
+        fetch('../navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+
+        // 加载 links.json 文件并动态渲染视频列表
+        fetch('./links.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const columns = [
+                    document.getElementById('column1'),
+                    document.getElementById('column2'),
+                    document.getElementById('column3')
+                ];
+                let index = 1;
+
+                data.forEach((link, i) => {
+                    const columnIndex = i % columns.length; // 计算列索引
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = "#"; // 防止页面跳转
+                    a.textContent = `${index}. ${link.name}`;
+                    a.onclick = function() {
+                        playVideo(link.url);
+                    };
+                    li.appendChild(a);
+                    columns[columnIndex].appendChild(li); // 将链接添加到对应列
+                    index++;
+                });
+            })
+            .catch(error => {
+                console.error('Error loading links:', error);
+            });
+
+        // 播放视频函数
+        function playVideo(url) {
             const videoPlayer = document.getElementById('videoPlayer');
             const videoSource = document.getElementById('videoSource');
-
-            data.forEach(video => {
-                // 创建视频列表项
-                const videoItem = document.createElement('div');
-                videoItem.classList.add('video-item');
-                videoItem.textContent = video.title;
-                
-                // 点击时显示播放器并更改视频源
-                videoItem.onclick = () => {
-                    videoSource.src = video.url;
-                    videoPlayer.load(); // 重新加载视频
-                    videoPlayerContainer.style.display = 'block'; // 显示视频播放器
-                    videoPlayer.play(); // 播放视频
-                };
-                
-                videoList.appendChild(videoItem);
-            });
-        })
-        .catch(error => {
-            console.error('Error loading video list:', error);
-        });
-</script>
-
+            videoSource.src = url;
+            videoPlayer.load(); // 重新加载视频
+            videoPlayer.play(); // 播放视频
+        }
+    </script>
 </body>
 </html>
