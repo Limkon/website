@@ -34,7 +34,7 @@
 
 <script>
     // 加载 links.json 文件并生成视频列表
-    fetch('links.json')
+    fetch('./links.json')
         .then(response => response.json())
         .then(data => {
             const videoList = document.getElementById('videoList');
