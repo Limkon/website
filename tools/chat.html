@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聊天室</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #message-container {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    #message-form {
+      display: flex;
+      margin-top: 10px;
+    }
+    #username {
+      margin-right: 10px;
+    }
+    #admin-password {
+      margin-left: 10px;
+    }
+  </style>
+  <script>
+    const API_URL = 'https://chat.woshim.workers.dev'; // 替换为实际的 API 地址
+    let allMessages = [];
+    let isFetchingMessages = false;
+    let lastMessageId = null;  // 用来记录最后一条消息的ID
+
+    // 获取消息的函数
+    function getMessages(page = 1) {
+      if (isFetchingMessages) return;
+      isFetchingMessages = true;
+
+      let url = `${API_URL}?page=${page}`;
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const newMessages = data; // 数据结构可能需要根据后端返回的格式调整
+          
+          if (newMessages.length > 0) {
+            newMessages.forEach(msg => {
+              if (!allMessages.find(m => m.id === msg.id)) { // 去重检查
+                allMessages.push(msg); // 添加新消息
+              }
+            });
+            lastMessageId = newMessages[newMessages.length - 1].id; // 更新 lastMessageId 为最新的消息ID
+          }
+
+          renderMessages();
+        })
+        .catch(error => console.error("获取消息时出错:", error))
+        .finally(() => {
+          isFetchingMessages = false;
+        });
+    }
+
+    // 渲染消息的函数
+    function renderMessages() {
+      const messageContainer = document.getElementById('message-container');
+      messageContainer.innerHTML = '';  // 清空消息容器
+
+      allMessages.forEach(msg => {
+        const messageElement = document.createElement('div');
+        messageElement.innerText = `${msg.username}: ${msg.message} (${msg.timestamp})`;
+        messageContainer.appendChild(messageElement);
+      });
+    }
+
+    // 发送消息的函数
+    function sendMessage(event) {
+      event.preventDefault(); // 防止表单提交
+
+      const username = document.getElementById('username').value;
+      const message = document.getElementById('message').value;
+
+      if (!username || !message) {
+        alert("用户名和消息不能为空！");
+        return;
+      }
+
+      fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, message }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            document.getElementById('message').value = ''; // 清空输入框
+            getMessages(1); // 发送消息后刷新
+          } else {
+            alert("发送消息失败: " + data.message);
+          }
+        })
+        .catch(error => console.error("发送消息时出错:", error));
+    }
+
+    // 删除所有消息的函数
+    function deleteMessages(event) {
+      event.preventDefault(); // 防止表单提交
+      const adminPassword = document.getElementById('admin-password').value;
+
+      if (!adminPassword) {
+        alert("请输入管理员密码！");
+        return;
+      }
+
+      fetch(`${API_URL}/delete`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ adminPassword }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("所有消息已删除！");
+            allMessages = []; // 清空当前消息列表
+            renderMessages(); // 刷新显示
+          } else {
+            alert("删除失败: " + data.message);
+          }
+        })
+        .catch(error => console.error("删除消息时出错:", error));
+    }
+
+    // 登录功能
+    function login(event) {
+      event.preventDefault(); // 防止表单提交
+      const password = document.getElementById('login-password').value;
+
+      fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("登录成功！");
+            document.getElementById('admin-actions').style.display = 'block'; // 显示管理员操作区
+          } else {
+            alert("登录失败: " + data.message);
+          }
+        })
+        .catch(error => console.error("登录时出错:", error));
+    }
+
+    // 自动刷新功能
+    setInterval(() => {
+      getMessages(1);
+    }, 5000);  // 每5秒钟刷新一次
+
+    // 页面加载时获取消息
+    window.onload = function() {
+      getMessages(1);
+    };
+  </script>
+</head>
+<body>
+  <h1>消息系统</h1>
+  <div id="message-container">
+    <!-- 消息将显示在这里 -->
+  </div>
+
+  <form id="message-form" onsubmit="sendMessage(event)">
+    <input type="text" id="username" placeholder="用户名" required>
+    <input type="text" id="message" placeholder="输入消息" required>
+    <button type="submit">发送</button>
+  </form>
+
+  <div id="admin-actions" style="display: none;">
+    <form onsubmit="deleteMessages(event)">
+      <input type="password" id="admin-password" placeholder="管理员密码" required>
+      <button type="submit">删除所有消息</button>
+    </form>
+  </div>
+
+  <form onsubmit="login(event)">
+    <input type="password" id="login-password" placeholder="输入管理员密码以登录" required>
+    <button type="submit">登录</button>
+  </form>
+</body>
+</html>
