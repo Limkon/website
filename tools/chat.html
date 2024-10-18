@@ -1,194 +1,353 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>聊天室</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    #message-container {
-      height: 300px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-    #message-form {
-      display: flex;
-      margin-top: 10px;
-    }
-    #username {
-      margin-right: 10px;
-    }
-    #admin-password {
-      margin-left: 10px;
-    }
-  </style>
-  <script>
-    const API_URL = 'https://chat.woshim.workers.dev'; // 替换为实际的 API 地址
-    let allMessages = [];
-    let isFetchingMessages = false;
-    let lastMessageId = null;  // 用来记录最后一条消息的ID
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            height: calc(100% - 120px);
+            overflow-y: auto;
+        }
+        #chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        #chat-box div {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        #chat-box .user {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        #chat-box .other {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        #input-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        #send-btn, #delete-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        #send-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #send-btn:hover:enabled {
+            background-color: #218838;
+        }
+        #delete-btn {
+            background-color: #dc3545;
+        }
+        #delete-btn:hover {
+            background-color: #c82333;
+        }
 
-    // 获取消息的函数
-    function getMessages(page = 1) {
-      if (isFetchingMessages) return;
-      isFetchingMessages = true;
+        /* 平板和手机适配 */
+        @media (max-width: 768px) {
+            #chat-container {
+                padding: 10px;
+                margin: 5px;
+            }
+            #input-container {
+                flex-direction: column;
+            }
+            #message-input {
+                margin-bottom: 5px;
+            }
+            #send-btn, #delete-btn {
+                margin-bottom: 5px;
+            }
+        }
 
-      let url = `${API_URL}?page=${page}`;
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const newMessages = data; // 数据结构可能需要根据后端返回的格式调整
-          
-          if (newMessages.length > 0) {
-            newMessages.forEach(msg => {
-              if (!allMessages.find(m => m.id === msg.id)) { // 去重检查
-                allMessages.push(msg); // 添加新消息
-              }
-            });
-            lastMessageId = newMessages[newMessages.length - 1].id; // 更新 lastMessageId 为最新的消息ID
-          }
-
-          renderMessages();
-        })
-        .catch(error => console.error("获取消息时出错:", error))
-        .finally(() => {
-          isFetchingMessages = false;
-        });
-    }
-
-    // 渲染消息的函数
-    function renderMessages() {
-      const messageContainer = document.getElementById('message-container');
-      messageContainer.innerHTML = '';  // 清空消息容器
-
-      allMessages.forEach(msg => {
-        const messageElement = document.createElement('div');
-        messageElement.innerText = `${msg.username}: ${msg.message} (${msg.timestamp})`;
-        messageContainer.appendChild(messageElement);
-      });
-    }
-
-    // 发送消息的函数
-    function sendMessage(event) {
-      event.preventDefault(); // 防止表单提交
-
-      const username = document.getElementById('username').value;
-      const message = document.getElementById('message').value;
-
-      if (!username || !message) {
-        alert("用户名和消息不能为空！");
-        return;
-      }
-
-      fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, message }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            document.getElementById('message').value = ''; // 清空输入框
-            getMessages(1); // 发送消息后刷新
-          } else {
-            alert("发送消息失败: " + data.message);
-          }
-        })
-        .catch(error => console.error("发送消息时出错:", error));
-    }
-
-    // 删除所有消息的函数
-    function deleteMessages(event) {
-      event.preventDefault(); // 防止表单提交
-      const adminPassword = document.getElementById('admin-password').value;
-
-      if (!adminPassword) {
-        alert("请输入管理员密码！");
-        return;
-      }
-
-      fetch(`${API_URL}/delete`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ adminPassword }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            alert("所有消息已删除！");
-            allMessages = []; // 清空当前消息列表
-            renderMessages(); // 刷新显示
-          } else {
-            alert("删除失败: " + data.message);
-          }
-        })
-        .catch(error => console.error("删除消息时出错:", error));
-    }
-
-    // 登录功能
-    function login(event) {
-      event.preventDefault(); // 防止表单提交
-      const password = document.getElementById('login-password').value;
-
-      fetch(`${API_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ password }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            alert("登录成功！");
-            document.getElementById('admin-actions').style.display = 'block'; // 显示管理员操作区
-          } else {
-            alert("登录失败: " + data.message);
-          }
-        })
-        .catch(error => console.error("登录时出错:", error));
-    }
-
-    // 自动刷新功能
-    setInterval(() => {
-      getMessages(1);
-    }, 5000);  // 每5秒钟刷新一次
-
-    // 页面加载时获取消息
-    window.onload = function() {
-      getMessages(1);
-    };
-  </script>
+        /* 手机适配 */
+        @media (max-width: 480px) {
+            #chat-container {
+                padding: 5px;
+                margin: 2px;
+            }
+            #input-container {
+                flex-direction: column;
+            }
+            #message-input {
+                margin-bottom: 2px;
+            }
+            #send-btn, #delete-btn {
+                margin-bottom: 2px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>消息系统</h1>
-  <div id="message-container">
-    <!-- 消息将显示在这里 -->
-  </div>
 
-  <form id="message-form" onsubmit="sendMessage(event)">
-    <input type="text" id="username" placeholder="用户名" required>
-    <input type="text" id="message" placeholder="输入消息" required>
-    <button type="submit">发送</button>
-  </form>
+    <div id="chat-container" style="display: none;">
+        <div id="chat-box"></div>
+        <div id="input-container">
+            <input type="text" id="message-input" placeholder="输入消息...">
+            <button id="send-btn">发送</button>
+            <button id="delete-btn">删除所有记录</button>
+        </div>
+    </div>
 
-  <div id="admin-actions" style="display: none;">
-    <form onsubmit="deleteMessages(event)">
-      <input type="password" id="admin-password" placeholder="管理员密码" required>
-      <button type="submit">删除所有消息</button>
-    </form>
-  </div>
+    <script>
+        const API_URL = "chat.woshim.workers.dev";  // 替换为正确的API URL
+        let username = localStorage.getItem("username");
+        let lastMessageId = null;  // 用于记录最后一条消息的ID
 
-  <form onsubmit="login(event)">
-    <input type="password" id="login-password" placeholder="输入管理员密码以登录" required>
-    <button type="submit">登录</button>
-  </form>
+        if (!username) {
+            username = prompt("请输入你的用户名");
+            localStorage.setItem("username", username);
+        }
+
+        let isFetchingMessages = false;  // 是否正在获取消息的标志
+
+        // 颜色映射，为每个昵称生成一个唯一的颜色
+        const colorMap = new Map();
+        const colors = ["#d1ecf1", "#f8d7da", "#d4edda", "#fff3cd", "#d1d1e0", "#f0d1e0", "#d1e0d1", "#e0d1d1", "#cce5ff", "#e2e3e5"];
+
+        // 生成颜色函数
+        function getColorForUsername(username) {
+            if (!colorMap.has(username)) {
+                const color = colors[colorMap.size % colors.length];
+                colorMap.set(username, color);
+            }
+            return colorMap.get(username);
+        }
+
+        // 添加新函数:滚动到底部
+        function scrollToBottom() {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        let messageQueue = [];
+        let isSending = false;
+
+        // 修改 sendMessage 函数
+        function sendMessage() {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value.trim();
+            if (message === "") {
+                alert("消息不能为空");
+                return;
+            }
+
+            const payload = {
+                username: username,
+                message: message
+            };
+
+            if (isFetchingMessages || isSending) {
+                // 如果正在刷新消息或发送中,将消息加入队列
+                messageQueue.push(payload);
+                setSendButtonState(true, "发送中...");
+                messageInput.value = "";
+                return;
+            }
+
+            sendMessageToServer(payload);
+        }
+
+        // 新增 sendMessageToServer 函数
+        function sendMessageToServer(payload) {
+            isSending = true;
+            setSendButtonState(true, "发送中...");
+
+            fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    getMessages(1, true); // 发送成功后获取最新消息
+                    scrollToBottom(); // 滚动到底部
+                } else {
+                    alert("消息发送失败: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("发送消息时出错:", error);
+                alert("发送消息失败,请稍后重试");
+            })
+            .finally(() => {
+                isSending = false;
+                setSendButtonState(false, "发送");
+                processMessageQueue();
+            });
+        }
+
+        // 新增 processMessageQueue 函数
+        function processMessageQueue() {
+            if (messageQueue.length > 0 && !isFetchingMessages && !isSending) {
+                const nextMessage = messageQueue.shift();
+                sendMessageToServer(nextMessage);
+            }
+        }
+
+        // 新增 setSendButtonState 函数
+        function setSendButtonState(disabled, text) {
+            const sendBtn = document.getElementById("send-btn");
+            sendBtn.disabled = disabled;
+            sendBtn.textContent = text;
+        }
+
+        let allMessages = [];  // 用于存储所有已加载的消息
+        let oldestMessageId = null;  // 用于记录最早的消息ID
+
+        // 修改 getMessages 函数
+        function getMessages(page = 1, isAutoRefresh = false) {
+            if (isFetchingMessages) return;
+            isFetchingMessages = true;
+
+            // 清空消息：重新加载第一页时清空消息列表
+            if (page === 1 && !isAutoRefresh) {
+                allMessages = [];
+                lastMessageId = null;
+                oldestMessageId = null;
+            }
+
+            let url = `${API_URL}?page=${page}`;
+            if (isAutoRefresh && lastMessageId) {
+                url += `&after=${lastMessageId}`;
+            } else if (!isAutoRefresh && oldestMessageId) {
+                url += `&before=${oldestMessageId}`;
+            }
+
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const newMessages = data.results.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+                if (newMessages.length > 0) {
+                    if (isAutoRefresh) {
+                        allMessages = allMessages.concat(newMessages);
+                        lastMessageId = newMessages[newMessages.length - 1].id;
+                    } else {
+                        allMessages = newMessages.concat(allMessages);
+                        oldestMessageId = newMessages[0].id;
+                    }
+
+                    renderMessages();
+
+                    if (isAutoRefresh) {
+                        scrollToBottom();
+                    }
+                }
+
+                if (page === 1 && !isAutoRefresh) {
+                    scrollToBottom();
+                }
+            })
+            .catch(error => {
+                console.error("获取消息时出错:", error);
+            })
+            .finally(() => {
+                isFetchingMessages = false;
+                processMessageQueue();
+            });
+        }
+
+        function renderMessages() {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML = "";  // 清空内容
+
+            allMessages.forEach(msg => {
+                const msgElement = document.createElement("div");
+                msgElement.style.backgroundColor = getColorForUsername(msg.username);
+                msgElement.innerHTML = `<strong>${msg.username}:</strong> ${msg.message}`;
+                chatBox.appendChild(msgElement);
+            });
+        }
+
+        // 删除所有记录功能
+        function deleteMessages() {
+            if (confirm("你确定要删除所有聊天记录吗?")) {
+                fetch(API_URL, {
+                    method: "DELETE"
+                })
+                .then(response => {
+                    if (response.ok) {
+                        allMessages = [];
+                        oldestMessageId = null;
+                        lastMessageId = null;
+                        document.getElementById("chat-box").innerHTML = "";
+                        alert("所有记录已删除");
+                    } else {
+                        alert("删除记录失败");
+                    }
+                })
+                .catch(error => {
+                    console.error("删除记录时出错:", error);
+                    alert("删除记录失败，请稍后重试");
+                });
+            }
+        }
+
+        // 自动刷新功能
+        function autoRefreshMessages() {
+            setInterval(() => {
+                getMessages(1, true);  // 获取新消息
+            }, 5000);  // 每5秒刷新一次
+        }
+
+        // 初始化
+        document.getElementById("send-btn").addEventListener("click", sendMessage);
+        document.getElementById("delete-btn").addEventListener("click", deleteMessages);
+        getMessages();  // 加载第一页消息
+        autoRefreshMessages();  // 开始自动刷新
+
+    </script>
 </body>
 </html>
