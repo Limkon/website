@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聊天室</title>
+    <title>聊天室/title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -246,13 +246,6 @@
             if (isFetchingMessages) return;
             isFetchingMessages = true;
 
-            // 清空消息：重新加载第一页时清空消息列表
-            if (page === 1 && !isAutoRefresh) {
-                allMessages = [];
-                lastMessageId = null;
-                oldestMessageId = null;
-            }
-
             let url = `${API_URL}?page=${page}`;
             if (isAutoRefresh && lastMessageId) {
                 url += `&after=${lastMessageId}`;
@@ -269,7 +262,7 @@
             })
             .then(data => {
                 const newMessages = data.results.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-
+                
                 if (newMessages.length > 0) {
                     if (isAutoRefresh) {
                         allMessages = allMessages.concat(newMessages);
@@ -299,55 +292,175 @@
             });
         }
 
+        // 新增 renderMessages 函数
         function renderMessages() {
             const chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML = "";  // 清空内容
+            chatBox.innerHTML = '';  // 清空现有消息
+            const fragment = document.createDocumentFragment();
 
             allMessages.forEach(msg => {
                 const msgElement = document.createElement("div");
+                msgElement.id = `msg-${msg.id}`;
+                msgElement.textContent = `${msg.timestamp} ${msg.username}: ${msg.message}`;
                 msgElement.style.backgroundColor = getColorForUsername(msg.username);
-                msgElement.innerHTML = `<strong>${msg.username}:</strong> ${msg.message}`;
-                chatBox.appendChild(msgElement);
+                fragment.appendChild(msgElement);
             });
+
+            chatBox.appendChild(fragment);
         }
 
-        // 删除所有记录功能
-        function deleteMessages() {
-            if (confirm("你确定要删除所有聊天记录吗?")) {
-                fetch(API_URL, {
-                    method: "DELETE"
+        // 删除所有消息函数
+        function deleteAllMessages() {
+            const password1 = prompt("请输入管理员密码:");
+            const password2 = prompt("请再次输入管理员密码:");
+
+            if (password1 !== password2) {
+                alert("两次输入的密码不一致！");
+                return;
+            }
+
+            if (confirm("你确定要删除所有聊天记录吗？此操作不可撤销！")) {
+                fetch(`${API_URL}/delete`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ adminPassword: password1 })
                 })
                 .then(response => {
-                    if (response.ok) {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert("所有聊天记录已删除！");
+                        // 重置消息相关变量
                         allMessages = [];
-                        oldestMessageId = null;
                         lastMessageId = null;
-                        document.getElementById("chat-box").innerHTML = "";
-                        alert("所有记录已删除");
+                        oldestMessageId = null;
+                        // 清空聊天框
+                        document.getElementById("chat-box").innerHTML = '';
+                        // 重新获取消息
+                        getMessages(1, true);
                     } else {
-                        alert("删除记录失败");
+                        alert("删除失败: " + data.message);
                     }
                 })
                 .catch(error => {
-                    console.error("删除记录时出错:", error);
-                    alert("删除记录失败，请稍后重试");
+                    console.error("删除消息时出错:", error);
+                    alert("删除失败！请检查网络或联系管理员。");
                 });
             }
         }
 
-        // 自动刷新功能
-        function autoRefreshMessages() {
-            setInterval(() => {
-                getMessages(1, true);  // 获取新消息
-            }, 5000);  // 每5秒刷新一次
+        async function login() {
+            const password = prompt("请输入加密密码:");
+            if (!password) {
+                alert("密码不能为空!");
+                window.location.reload();
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success) {
+                        // 登录成功,存储登录状态和过期时间
+                        localStorage.setItem("isLoggedIn", "true");
+                        const expirationTime = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+                        localStorage.setItem("expirationTime", expirationTime.toString());
+                        // 登录成功后加载聊天界面
+                        loadChatInterface();
+                    } else {
+                        alert("密码错误,无法进入聊天频道!");
+                        window.location.reload();
+                    }
+                } else {
+                    throw new Error("登录请求失败");
+                }
+            } catch (error) {
+                console.error("登录出错:", error);
+                alert("登录请求失败,请稍后重试!");
+                window.location.reload();
+            }
         }
 
-        // 初始化
-        document.getElementById("send-btn").addEventListener("click", sendMessage);
-        document.getElementById("delete-btn").addEventListener("click", deleteMessages);
-        getMessages();  // 加载第一页消息
-        autoRefreshMessages();  // 开始自动刷新
+        function loadChatInterface() {
+            document.getElementById("chat-container").style.display = "flex";
+            getMessages(1);
+            document.getElementById("message-input").focus();
+            // 移除这里的 scrollToBottom() 调用,因为 getMessages 已经会处理滚动
+        }
 
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const expirationTime = localStorage.getItem("expirationTime");
+
+            if (isLoggedIn && expirationTime && new Date().getTime() <= parseInt(expirationTime)) {
+                loadChatInterface();
+            } else {
+                // 清除过期的登录信息
+                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("expirationTime");
+                login();
+            }
+        }
+
+        // 添加自动刷新函数
+        const REFRESH_INTERVAL = 1000;  // 1秒刷新一次
+        function autoRefreshMessages() {
+            setInterval(() => {
+                getMessages(1, true);  // 自动获取最新消息
+            }, REFRESH_INTERVAL);
+        }
+
+        // 修改页面加载完成后的操作
+        document.addEventListener("DOMContentLoaded", function() {
+            // 初始隐藏聊天界面
+            document.getElementById("chat-container").style.display = "none";
+            checkLoginStatus();
+            document.getElementById("message-input").focus();
+            getMessages(1);  // 加载第一页消息
+            autoRefreshMessages();  // 启动自动刷新
+        });
+
+        // 事件监听器，点击发送按钮时发送消息
+        document.getElementById("send-btn").addEventListener("click", sendMessage);
+
+        // 事件监听器，按下回车键时发送消息
+        document.getElementById("message-input").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        // 事件监听器，点击删除按钮时删除所有消息
+        document.getElementById("delete-btn").addEventListener("click", deleteAllMessages);
+
+        // 修改滚动事件监听器
+        document.getElementById("chat-box").addEventListener("scroll", function() {
+            if (this.scrollTop === 0 && !isFetchingMessages) {
+                const currentPage = parseInt(this.getAttribute("data-page") || "1", 10);
+                this.setAttribute("data-page", currentPage + 1);
+                const oldScrollHeight = this.scrollHeight;
+                getMessages(currentPage + 1, false);
+                // 保持滚动位置
+                setTimeout(() => {
+                    this.scrollTop = this.scrollHeight - oldScrollHeight;
+                }, 100);
+            }
+        });
     </script>
+
 </body>
 </html>
