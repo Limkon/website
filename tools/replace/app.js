@@ -1,9 +1,30 @@
-function addRule() {
+function addRule(find = '', replace = '') {
     // 添加新的查找和替换规则
     const ruleContainer = document.getElementById('ruleContainer');
     const newRule = document.createElement('div');
-    newRule.innerHTML = `查找: <input type="text" class="findText"> 替换为: <input type="text" class="replaceText">`;
+    newRule.innerHTML = `查找: <input type="text" class="findText" value="${find}"> 替换为: <input type="text" class="replaceText" value="${replace}">`;
     ruleContainer.appendChild(newRule);
+}
+
+function loadPresetRules() {
+    // 预设一些常用规则
+    const presetRules = [
+        { find: '+', replace: '&"+"&' },
+        { find: '-', replace: '&"-"&' },
+        { find: '*', replace: '&"×"&' }
+        { find: '/', replace: '&"÷"&' }
+        { find: '=', replace: '&"="&' }
+        { find: '(', replace: '&"("&' }
+        { find: ')', replace: '&")"&' }
+        { find: '[', replace: '&"["&' }
+        { find: ']', replace: '&"]"&' }
+        { find: '^', replace: '&"^"&' }
+    ];
+    
+    // 添加预设规则
+    presetRules.forEach(rule => {
+        addRule(rule.find, rule.replace);
+    });
 }
 
 function escapeRegExp(string) {
@@ -47,3 +68,8 @@ function replaceText() {
     // 输出替换后的文本
     document.getElementById('outputText').value = outputText;
 }
+
+// 在页面加载时添加预设规则
+window.onload = function() {
+    loadPresetRules();
+};
