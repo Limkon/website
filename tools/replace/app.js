@@ -15,7 +15,7 @@ function loadPresetRules() {
     }
     ruleContainer.innerHTML = ''; // 清空默认的静态规则
 
-    // 预设一些常用规则（修复语法错误）
+    // 预设一些常用规则
     const presetRules = [
         { find: '+', replace: '&"+"&' },
         { find: '-', replace: '&"-"&' },
@@ -78,8 +78,8 @@ function replaceText() {
     document.getElementById('outputText').value = outputText;
 }
 
-// 在页面加载时添加预设规则
-window.onload = function() {
-    console.log("页面加载完成，开始初始化...");
+// 在 DOM 加载完成后添加预设规则
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM 加载完成，开始初始化...");
     loadPresetRules();
-};
+});
