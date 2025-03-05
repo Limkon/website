@@ -7,6 +7,10 @@ function addRule(find = '', replace = '') {
 }
 
 function loadPresetRules() {
+    // 清除现有的静态规则（可选）
+    const ruleContainer = document.getElementById('ruleContainer');
+    ruleContainer.innerHTML = ''; // 清空默认的静态规则
+
     // 预设一些常用规则
     const presetRules = [
         { find: '+', replace: '&"+"&' },
