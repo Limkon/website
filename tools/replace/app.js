@@ -7,26 +7,31 @@ function addRule(find = '', replace = '') {
 }
 
 function loadPresetRules() {
-    // 清除现有的静态规则（可选）
+    console.log("加载预设规则..."); // 调试日志
     const ruleContainer = document.getElementById('ruleContainer');
+    if (!ruleContainer) {
+        console.error("未找到 ruleContainer 元素！");
+        return;
+    }
     ruleContainer.innerHTML = ''; // 清空默认的静态规则
 
-    // 预设一些常用规则
+    // 预设一些常用规则（修复语法错误）
     const presetRules = [
         { find: '+', replace: '&"+"&' },
         { find: '-', replace: '&"-"&' },
-        { find: '*', replace: '&"×"&' }
-        { find: '/', replace: '&"÷"&' }
-        { find: '=', replace: '&"="&' }
-        { find: '(', replace: '&"("&' }
-        { find: ')', replace: '&")"&' }
-        { find: '[', replace: '&"["&' }
-        { find: ']', replace: '&"]"&' }
+        { find: '*', replace: '&"×"&' },
+        { find: '/', replace: '&"÷"&' },
+        { find: '=', replace: '&"="&' },
+        { find: '(', replace: '&"("&' },
+        { find: ')', replace: '&")"&' },
+        { find: '[', replace: '&"["&' },
+        { find: ']', replace: '&"]"&' },
         { find: '^', replace: '&"^"&' }
     ];
     
     // 添加预设规则
     presetRules.forEach(rule => {
+        console.log(`添加规则: ${rule.find} -> ${rule.replace}`); // 调试日志
         addRule(rule.find, rule.replace);
     });
 }
@@ -75,5 +80,6 @@ function replaceText() {
 
 // 在页面加载时添加预设规则
 window.onload = function() {
+    console.log("页面加载完成，开始初始化...");
     loadPresetRules();
 };
