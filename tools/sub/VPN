@@ -1,4 +1,3 @@
-soho.lovedub.net  cdnx.edu.bolo.fyi
 vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@zoot.serv00.net:50236?security=&fp=android&type=ws&path=/&host=zoot.serv00.net&encryption=none#svr00-vless
 vmess://eyJhZGQiOiJnem9scy5zZXJ2MDAubmV0IiwiYWlkIjoiMCIsImhvc3QiOiJkb3dubG9hZC53aW5kb3dzdXBkYXRlLmNvbSIsImlkIjoiZDQwZTBlYTgtNjNiZS00OWQyLTg5NDYtYzQzYzUxNDBiNTU5IiwibmV0Ijoid3MiLCJwYXRoIjoiL2Rvd25sb2FkIiwicG9ydCI6IjUxMjM4IiwicHMiOiJzZXJ2MDAtdm1lc3MiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiIiwidHlwZSI6IiIsInYiOiIyIn0=
 vless://7f6e8231-d2e6-4732-80b6-69fbf940a9f0@gzols.serv00.net:51237?security=reality&sni=addons.mozilla.org&fp=chrome&pbk=kGjgURBf7vniCC5suKJGKr2skhnyatE64y2yOWoxURw&sid=a60a115d9d7eead8&type=tcp&flow=xtls-rprx-vision&encryption=none#serv00-reality
@@ -104,7 +103,11 @@ vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@www.visa.com.sg:8443?encryption=non
 trojan://771571215@solin.avisa.dedyn.io:443?encryption=none&security=tls&type=ws&host=solin.avisa.dedyn.io&path=%2F%3Fed%3D2560&sni=solin.avisa.dedyn.io&fp=randomized#solin.avisa.dedyn.io
 vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@aido.website.netlib.re:443?encryption=none&security=tls&type=ws&host=aido.website.netlib.re&path=%2F%3Fed%3D2560&sni=aido.website.netlib.re&fp=randomized#aido.website.netlib.re
 trojan://771571215@aidb.website.netlib.re:443?encryption=none&security=tls&type=ws&host=aidb.website.netlib.re&path=%2F%3Fed%3D2560&sni=aidb.website.netlib.re&fp=randomized#aidb.website.netlib.re
-socks5://koncie:koncie52000@136.243.156.104:52000#koncie不能直连
 socks://limits:132579@91.185.187.49:28257
 socks5://258:000@188.68.250.202:20256
 vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@www.visa.com.sg:8443?encryption=none&security=tls&type=ws&host=nicegirl.kconice.ip-ddns.com&sni=nicegirl.kconice.ip-ddns.com&fp=random&path=%2F%3Fed%3D2560#nicegirl.kconice.ip-ddns.com
+vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@stdu.nyc.mn:443?security=tls&sni=zxio.pages.dev&fp=random&type=ws&path=/?ed%3D2560&host=zxio.pages.dev&encryption=none#CFnat
+vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@aeloin.xio.inf.ua:443?encryption=none&security=tls&sni=aeloin.xio.inf.ua&fp=randomized&type=ws&host=aeloin.xio.inf.ua&path=%2F%3Fed%3D2048#aeloin.xio.inf.ua
+vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@bigbag.whoshime.cc.ua:443?encryption=none&security=tls&sni=bigbag.whoshime.cc.ua&fp=randomized&type=ws&host=bigbag.whoshime.cc.ua&path=%2F%3Fed%3D2048#bigbag.whoshime.cc.ua
+vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@xar.stdu.ltd.ua:443?encryption=none&security=tls&sni=xar.stdu.ltd.ua&fp=randomized&type=ws&host=xar.stdu.ltd.ua&path=%2F%3Fed%3D2048#xar.stdu.ltd.ua
+vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@xar.stdu.ltd.ua:443?encryption=none&security=tls&sni=xar.stdu.ltd.ua&fp=randomized&type=ws&host=xar.stdu.ltd.ua&path=%2F%3Fed%3D2048#xar.stdu.ltd.ua
