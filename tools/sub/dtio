@@ -6,3 +6,6 @@ hysteria2://fd7bcb41-a332-4016-8385-fd5dbef32d8b@px-002.xiaoxiaobujidao.xyz:443#
 hysteria2://fd7bcb41-a332-4016-8385-fd5dbef32d8b@px-001.xiaoxiaobujidao.xyz:443#%F0%9F%A4%8E%E5%87%A4%E5%87%B0%E5%9F%8E001
 hysteria2://fd7bcb41-a332-4016-8385-fd5dbef32d8b@uk-001.xiaoxiaobujidao.xyz:443#%F0%9F%98%88%E8%8B%B1%E6%A0%BC%E5%85%B0001
 hysteria2://fd7bcb41-a332-4016-8385-fd5dbef32d8b@tk-007.xiaoxiaobujidao.xyz:443#%F0%9F%96%A4%E4%B8%9C%E4%BA%AC%E4%BA%AC007
+vless://c5f665de-e820-44d0-abf4-d23aa2d6f977@93.177.65.104:51688?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.yahoo.com&fp=chrome&pbk=KZ8OnDaJyDfaF9iwzXYuFdo796yoIy6fIh5JmdJ5fAs&sid=12ea6200&type=tcp&headerType=none#vl-reality-NETCUPMJJ
+hysteria2://c5f665de-e820-44d0-abf4-d23aa2d6f977@93.177.65.104:38578?sni=www.bing.com&alpn=h3&insecure=1#hy2-NETCUPMJJ
+vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIk5FVENVUE1KSiIsDQogICJhZGQiOiAibnp6Lm9wZW5mYWNlLmNjIiwNCiAgInBvcnQiOiAiMjA4MiIsDQogICJpZCI6ICJjNWY2NjVkZS1lODIwLTQ0ZDAtYWJmNC1kMjNhYTJkNmY5NzciLA0KICAiYWlkIjogIjAiLA0KICAic2N5IjogImF1dG8iLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogIm5ldGN1cC40MDQ0NDQueHl6IiwNCiAgInBhdGgiOiAiYzVmNjY1ZGUtZTgyMC00NGQwLWFiZjQtZDIzYWEyZDZmOTc3LXZtIiwNCiAgInRscyI6ICIiLA0KICAic25pIjogIiIsDQogICJhbHBuIjogIiIsDQogICJmcCI6ICIiDQp9
