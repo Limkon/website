@@ -35,3 +35,7 @@ hy2://7BD3AAA7-895A-4121-AF39-4F4E56F4ADB8@hk3.ddns-link-b5.uk:5054?sni=hk3.ddns
 103.56.128.142:443@pjpE61590:Wkvq98R2
 45.91.199.44:443@R7V561590:dFZBGKNn
 hysteria2://6c5173fb0876a815@194.87.2.76:17611/?sni=www.bing.com&alpn=h3&insecure=1#CZ-Itm_Nord
+vless://1e4422f8-5855-46a8-9e18-f60757307eee@92.112.20.132:26064?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.yahoo.com&fp=chrome&pbk=oUf9p6_eITvriKZvrDsSx3eVSe9i4thRRBxqp9boEEU&sid=19ffb569&allowInsecure=1&type=tcp&headerType=none#vl-reality-Legendvps
+vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogInZtLXdzLUxlZ2VuZHZwcyIsDQogICJhZGQiOiAiOTIuMTEyLjIwLjEzMiIsDQogICJwb3J0IjogIjIwODYiLA0KICAiaWQiOiAiMWU0NDIyZjgtNTg1NS00NmE4LTllMTgtZjYwNzU3MzA3ZWVlIiwNCiAgImFpZCI6ICIwIiwNCiAgInNjeSI6ICJhdXRvIiwNCiAgIm5ldCI6ICJ3cyIsDQogICJ0eXBlIjogIm5vbmUiLA0KICAiaG9zdCI6ICJ3d3cuYmluZy5jb20iLA0KICAicGF0aCI6ICIxZTQ0MjJmOC01ODU1LTQ2YTgtOWUxOC1mNjA3NTczMDdlZWUtdm0iLA0KICAidGxzIjogIiIsDQogICJzbmkiOiAiIiwNCiAgImFscG4iOiAiIiwNCiAgImZwIjogIiINCn0=
+hysteria2://1e4422f8-5855-46a8-9e18-f60757307eee@92.112.20.132:35896?sni=www.bing.com&alpn=h3&insecure=1#hy2-Legendvps
+tuic://1e4422f8-5855-46a8-9e18-f60757307eee%3A1e4422f8-5855-46a8-9e18-f60757307eee@92.112.20.132:15396?sni=www.bing.com&alpn=h3&congestion_control=bbr#tu5-Legendvps
