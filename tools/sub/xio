@@ -16,3 +16,4 @@ vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@lon.ydns.eu:13258?security=&sni=lon
 vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@lade.xio.hidns.vip:443?security=tls&sni=lade.xio.hidns.vip&fp=chrome&type=ws&path=/ed%3D2560&host=lade.xio.hidns.vip&encryption=none#Vip%F0%9F%92%AF%F0%9F%92%AF%F0%9F%92%AF
 vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@100g.xio.hidns.vip:443?security=tls&sni=100g.xio.hidns.vip&fp=chrome&type=ws&path=/ed%3D2560&host=100g.xio.hidns.vip&encryption=none#Vip%F0%9F%92%AF%F0%9F%92%AF%F0%9F%92%AF
 vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@jp.xio.hidns.vip:443?security=tls&sni=jp.xio.hidns.vip&fp=chrome&type=ws&path=/ed%3D2560&host=jp.xio.hidns.vip&encryption=none#Vip%F0%9F%92%AF%F0%9F%92%AF%F0%9F%92%AFjp
+vless://0058c4cc-82a2-4cd0-92ed-fe8286d261d2@pl.linqin.eu.org:443?security=tls&sni=pl.linqin.eu.org&fp=chrome&type=ws&path=/ed%3D2560&host=pl.linqin.eu.org&encryption=none#Vip%F0%9F%92%AF%F0%9F%92%AF%F0%9F%92%AF
