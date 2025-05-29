@@ -1,4 +1,4 @@
-/* 重置默认样式 */
+/* 重置預設樣式 */
 * {
     margin: 0;
     padding: 0;
@@ -6,75 +6,244 @@
 }
 
 body {
-    background-color: #ADD8E6; /* 浅蓝色背景 */
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    text-align: center;
+    background-color: #f0f4f8; /* 更柔和的淺灰藍色背景 */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 現代字體棧 */
     color: #333;
-    margin-top: 20px; /* 增加上边距 */
+    line-height: 1.6;
 }
 
-nav {
-    background-color: #007BFF;
-    padding: 10px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none; /* 移除默认的列表样式 */
-    padding: 0;
-    margin: 0;
-    display: flex; /* 将导航栏横向排列 */
-    justify-content: center; /* 居中对齐 */
-}
-
-nav li {
-    margin: 0 15px; /* 每个导航项左右留出间距 */
-}
-
-nav a {
-    text-decoration: none;
+/* 頁首樣式 */
+header {
+    background: linear-gradient(135deg, #007BFF, #0056b3); /* 漸層背景 */
     color: white;
-    font-size: 18px;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-nav a:hover {
-    text-decoration: underline;
+header h1 {
+    margin: 0;
+    font-size: 2.5em; /* 增大標題字型 */
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between; /* 三列均匀分布 */
-    padding: 20px;
-    flex-wrap: wrap; /* 允许换行 */
+/* 導覽列容器樣式 */
+nav#navbar-container {
+    margin-top: 15px;
 }
 
-.container .column {
-    flex: 1;
-    min-width: 250px; /* 每列的最小宽度 */
-    margin: 0 10px; /* 每列的左右间距 */
-}
-
-.container ul {
+nav#navbar-container ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.container li {
-    margin-bottom: 10px;
-    font-size: 18px; /* 增加一号字体 */
-    font-weight: bold; /* 字体加粗 */
+nav#navbar-container ul li {
+    margin: 5px 10px; /* 調整導覽列項目間距 */
 }
 
-.container a {
+nav#navbar-container ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border-radius: 20px; /* 更圓滑的按鈕 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav#navbar-container ul li a:hover,
+nav#navbar-container ul li a.active { /* 新增 active 狀態 */
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* 英雄/特色區塊樣式 */
+.hero-section {
+    background: #0069d9 url('https://placehold.co/1200x400/0069d9/ffffff?text=Hero+Background') no-repeat center center/cover; /* 示意背景圖，請替換 */
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px; /* 最小高度 */
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-content h2 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.hero-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #007BFF;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.hero-button:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* 主要內容容器 */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px; /* 增大間隙 */
+    padding: 30px 20px; /* 調整內邊距 */
+    max-width: 1200px; /* 設定最大寬度並居中 */
+    margin: 0 auto; /* 容器居中 */
+}
+
+/* 資源項目卡片樣式 */
+.resource-item {
+    background-color: #ffffff; /* 白色背景 */
+    border: 1px solid #e0e0e0; /* 更柔和的邊框 */
+    border-radius: 12px; /* 更大的圓角 */
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* 更明顯的陰影 */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 加入懸停動畫 */
+}
+
+.resource-item:hover {
+    transform: translateY(-5px); /* 懸停時輕微上移 */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.resource-icon {
+    font-size: 2.5em; /* 圖示字型大小 */
+    margin-bottom: 15px;
+    text-align: center;
+    color: #007BFF;
+}
+
+.resource-item h2 {
+    color: #0056b3; /* 項目標題顏色調整 */
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.6em; /* 調整字型大小 */
+    font-weight: 600;
+}
+
+.resource-item p {
+    margin-bottom: 20px;
+    font-size: 1em;
+    line-height: 1.7;
+    color: #555; /* 描述文字顏色調整 */
+    flex-grow: 1;
+}
+
+.resource-item a {
     text-decoration: none;
     color: #007BFF;
-    font-size: 18px; /* 增加一号字体 */
-    font-weight: bold; /* 字体加粗 */
+    font-size: 1em;
+    font-weight: 600; /* 加粗按鈕文字 */
+    display: inline-block;
+    padding: 10px 20px; /* 調整按鈕內邊距 */
+    border: 2px solid #007BFF; /* 邊框加粗 */
+    border-radius: 20px; /* 按鈕圓角 */
+    transition: background-color 0.3s, color 0.3s;
+    align-self: center; /* 按鈕在卡片內居中 */
+    margin-top: auto; /* 將按鈕推到底部 */
 }
 
-.container a:hover {
-    text-decoration: underline;
+.resource-item a:hover {
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+}
+
+/* "更多資源" 卡片特殊樣式 */
+.more-resources-placeholder {
+    background: linear-gradient(135deg, #6c757d, #495057); /* 深灰色漸層 */
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.more-resources-placeholder h2 {
+    color: white;
+}
+.more-resources-placeholder p {
+    color: #f0f0f0;
+    opacity: 0.9;
+}
+.coming-soon-badge {
+    display: inline-block;
+    background-color: #ffc107; /* 警告黃色 */
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+/* 頁腳樣式 */
+footer {
+    text-align: center;
+    padding: 30px 20px; /* 增大頁腳內邊距 */
+    margin-top: 40px;
+    background-color: #343a40; /* 深色頁腳背景 */
+    color: #f8f9fa; /* 淺色文字 */
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* 響應式調整：小螢幕下導覽列項目垂直排列 (可選) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    nav#navbar-container ul {
+        flex-direction: column; /* 垂直排列 */
+        align-items: center;
+    }
+    nav#navbar-container ul li {
+        margin: 8px 0; /* 調整垂直間距 */
+    }
+    .hero-content h2 {
+        font-size: 2.2em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
+    .container {
+        grid-template-columns: 1fr; /* 小螢幕下單欄 */
+        padding: 20px 15px;
+    }
 }
