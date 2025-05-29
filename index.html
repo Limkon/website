@@ -3,102 +3,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate-key="pageTitle">免費資源網</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Tailwind CSS 自訂配置 (可選，但通常不需要修改預設字體，除非有特殊需求)
-        // tailwind.config = {
-        //     theme: {
-        //         extend: {
-        //             fontFamily: {
-        //                 sans: ['Arial', 'sans-serif'],
-        //             },
-        //         }
-        //     }
-        // }
-    </script>
-    <style>
-        /* 僅保留必要的全局樣式，避免與 Tailwind 衝突 */
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            min-height: 100vh; /* 確保背景漸變充滿整個視窗高度 */
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 使用 Tailwind 預設字體棧 */
-        }
-        /* 如果 navbar.html 內部沒有使用 Tailwind class，這裡的樣式可以作為備用，但建議在 navbar.html 中直接使用 Tailwind */
-        /*
-        #navbar nav ul {
-            list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
-        }
-        #navbar nav ul li a {
-            text-decoration: none; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.375rem; transition: background-color 0.3s ease;
-        }
-        #navbar nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        */
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gradient-to-br from-sky-300 to-cyan-500 text-white"> <header class="bg-sky-700/50 backdrop-blur-md shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <h1 class="text-3xl sm:text-4xl font-bold text-center text-white mb-2 sm:mb-0" data-translate-key="mainTitle">免費資源網</h1>
-            <div id="navbar" class="text-center mt-2">
-                </div>
-        </div>
+<body>
+    <header>
+        <h1 data-translate-key="mainTitle">免費資源網</h1>
+        <nav id="navbar-container">
+            </nav>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="preview-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
-                <div>
-                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleNetdisk">免費網盤</h2>
-                    <p class="text-gray-600 mb-4" data-translate-key="previewDescNetdisk">這裡提供多種免費雲端儲存服務的簡要介紹。</p>
-                </div>
-                <a href="pan/wangpan.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+    <main>
+        <div class="container">
+            <div class="resource-item">
+                <h2 data-translate-key="previewTitleNetdisk">免費網盤</h2>
+                <p data-translate-key="previewDescNetdisk">這裡提供多種免費雲端儲存服務的簡要介紹。</p>
+                <a href="pan/wangpan.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
-            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
-                <div>
-                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleEmail">免費電子郵箱</h2>
-                    <p class="text-gray-600 mb-4" data-translate-key="previewDescEmail">提供免費的電子郵件服務，具備便捷管理功能與大容量儲存空間。</p>
-                </div>
-                <a href="email/you.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            <div class="resource-item">
+                <h2 data-translate-key="previewTitleEmail">免費電子郵箱</h2>
+                <p data-translate-key="previewDescEmail">提供免費的電子郵件服務，具備便捷管理功能與大容量儲存空間。</p>
+                <a href="email/you.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
-            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
-                <div>
-                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleDomain">免費域名</h2>
-                    <p class="text-gray-600 mb-4" data-translate-key="previewDescDomain">獲取免費的域名註冊服務，輕鬆建立您自己的網站。</p>
-                </div>
-                <a href="domain/yumian.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            <div class="resource-item">
+                <h2 data-translate-key="previewTitleDomain">免費域名</h2>
+                <p data-translate-key="previewDescDomain">獲取免費的域名註冊服務，輕鬆建立您自己的網站。</p>
+                <a href="domain/yumian.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
-            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
-                <div>
-                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleDeals">免費羊毛</h2>
-                    <p class="text-gray-600 mb-4" data-translate-key="previewDescDeals">搜羅網路上各種免費活動與優惠，薅羊毛、拿好禮。</p>
-                </div>
-                <a href="sleep/yang.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            <div class="resource-item">
+                <h2 data-translate-key="previewTitleDeals">免費羊毛</h2>
+                <p data-translate-key="previewDescDeals">搜羅網路上各種免費活動與優惠，薅羊毛、拿好禮。</p>
+                <a href="sleep/yang.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
-            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
-                <div>
-                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleMovies">免費電影</h2>
-                    <p class="text-gray-600 mb-4" data-translate-key="previewDescMovies">免費觀看高清電影，海量資源隨時看，享受視聽盛宴。</p>
-                </div>
-                <a href="movie/mov.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            <div class="resource-item">
+                <h2 data-translate-key="previewTitleMovies">免費電影</h2>
+                <p data-translate-key="previewDescMovies">免費觀看高清電影，海量資源隨時看，享受視聽盛宴。</p>
+                <a href="movie/mov.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
         </div>
     </main>
     
-    <footer class="py-8">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl font-semibold mb-4 text-white" data-translate-key="visitorsCountTitle">訪問人數</h2>
-            <div class="statcounter inline-block bg-white/20 p-2 rounded-lg shadow-md">
-                <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
-                    <img class="statcounter" src="https://c.statcounter.com/13039053/0/8f2c3505/0/" alt="Web Analytics" data-translate-key="statCounterAlt" referrerPolicy="no-referrer-when-downgrade" style="width: 150px; height: auto;">
-                </a>
-            </div>
+    <footer>
+        <h2 data-translate-key="visitorsCountTitle">訪問人數</h2>
+        <div class="statcounter"> <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+                <img class="statcounter" src="https://c.statcounter.com/13039053/0/8f2c3505/0/" alt="Web Analytics" data-translate-key="statCounterAlt" referrerPolicy="no-referrer-when-downgrade" style="width: 150px; height: auto; border:0;">
+            </a>
         </div>
     </footer>
 
@@ -157,25 +109,34 @@
             }
         };
 
+        /**
+         * 應用翻譯到指定節點
+         * @param {Node} node - 要翻譯的 DOM 節點
+         * @param {string} langKey - 語言金鑰 (例如 'zh-TW', 'en')
+         */
         function applyTranslationsToNode(node, langKey) {
             const langTranslations = translations[langKey];
             if (!langTranslations) {
-                console.warn(`Translations not found for language: ${langKey}. Defaulting.`);
+                console.warn(`未找到語言 ${langKey} 的翻譯。`);
                 return;
             }
 
-            if (node === document.documentElement) {
+            // 翻譯頁面標題
+            if (node === document.documentElement) { // 確保只在翻譯整個文檔時執行一次
                 const pageTitleElement = document.querySelector('title[data-translate-key="pageTitle"]');
                 if (pageTitleElement && langTranslations.pageTitle) {
                     document.title = langTranslations.pageTitle;
                 }
             }
             
+            // 遍歷所有帶有 data-translate-key 屬性的元素
             const elementsToTranslate = node.querySelectorAll('[data-translate-key]');
             elementsToTranslate.forEach(element => {
                 const key = element.getAttribute('data-translate-key');
-                if (element.tagName === 'TITLE' && key === 'pageTitle') return;
-
+                // 跳過已經處理過的 <title>
+                if (element.tagName === 'TITLE' && key === 'pageTitle') {
+                    return;
+                }
                 if (langTranslations[key]) {
                     if (element.tagName === 'IMG' && key.toLowerCase().includes('alt')) {
                          element.alt = langTranslations[key];
@@ -183,11 +144,15 @@
                         element.textContent = langTranslations[key];
                     }
                 } else {
-                    console.warn(`Translation key '${key}' not found in language '${langKey}'.`);
+                    console.warn(`在語言 '${langKey}' 中找不到鍵 '${key}' 的翻譯。`);
                 }
             });
         }
 
+        /**
+         * 偵測瀏覽器語言並返回最佳可用語言金鑰
+         * @returns {string} 語言金鑰
+         */
         function getBestAvailableLanguage() {
             const browserLangFull = navigator.language || navigator.userLanguage; 
             const browserLangBase = browserLangFull.split('-')[0]; 
@@ -195,59 +160,66 @@
             if (translations[browserLangFull]) return browserLangFull;
             if (translations[browserLangBase]) return browserLangBase;
             if (browserLangBase === 'zh' && translations['zh-TW']) return 'zh-TW';
-            if (translations['en']) return 'en';
-            return Object.keys(translations)[0] || 'en';
+            if (translations['en']) return 'en'; // 預設回退到英文
+            return Object.keys(translations)[0] || 'en'; // 最後回退
         }
 
+        /**
+         * 設定頁面語言
+         */
         function setPageLanguage() {
             const langKey = getBestAvailableLanguage();
             document.documentElement.lang = langKey; 
             applyTranslationsToNode(document.documentElement, langKey); 
-            window.currentLanguage = langKey; 
-            console.log(`[DEBUG] Page language set to: ${langKey}`);
+            window.currentLanguage = langKey; // 儲存當前語言供導覽列使用
+            console.log(`[DEBUG] 頁面語言已設定為: ${langKey}`);
         }
 
+        // DOM 載入完成後執行
         document.addEventListener('DOMContentLoaded', () => {
             setPageLanguage(); 
 
-            fetch('./navbar.html')
+            // 載入導覽列
+            fetch('./navbar.html') // 假設 navbar.html 在同一目錄
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`Failed to load navbar.html, status: ${response.status}`);
+                        throw new Error(`導覽列檔案載入失敗，狀態： ${response.status}`);
                     }
                     return response.text(); 
                 })
                 .then(data => {
-                    const navbarDiv = document.getElementById('navbar');
-                    if (navbarDiv) {
-                        // console.log('[DEBUG] Original navbar.html content:', data);
-                        navbarDiv.innerHTML = data; 
+                    const navbarContainer = document.getElementById('navbar-container');
+                    if (navbarContainer) {
+                        // console.log('[DEBUG] 原始 navbar.html 內容:', data);
+                        navbarContainer.innerHTML = data; // 將 navbar.html 的內容注入
                         
                         if (window.currentLanguage) {
-                            // console.log('[DEBUG] Translating navbar with language:', window.currentLanguage);
-                            applyTranslationsToNode(navbarDiv, window.currentLanguage);
-                            // console.log('[DEBUG] Translated navbarDiv innerHTML:', navbarDiv.innerHTML);
+                            // console.log('[DEBUG] 正在使用語言翻譯導覽列:', window.currentLanguage);
+                            applyTranslationsToNode(navbarContainer, window.currentLanguage);
+                            // console.log('[DEBUG] 翻譯後的 navbarContainer innerHTML:', navbarContainer.innerHTML);
                         } else {
-                            console.warn('[DEBUG] window.currentLanguage not set, cannot translate navbar.');
+                            console.warn('[DEBUG] window.currentLanguage 未設定，無法翻譯導覽列。');
                         }
                     } else {
-                        console.error("Element with ID 'navbar' not found.");
+                        console.error("ID 為 'navbar-container' 的元素找不到。");
                     }
                 })
                 .catch(error => {
-                    console.error('Error loading navbar:', error);
-                    const navbarDiv = document.getElementById('navbar');
-                    if (navbarDiv) {
-                        navbarDiv.innerHTML = `<p class="text-red-400">Navbar loading failed. Please try again later.</p>`;
+                    console.error('載入導覽列時發生錯誤:', error);
+                    const navbarContainer = document.getElementById('navbar-container');
+                    if (navbarContainer) { // 確保元素存在才操作
+                        navbarContainer.innerHTML = `<p style="color: red;">導覽列載入失敗，請稍後再試。</p>`;
                     }
                 });
 
-            // 隨機打開一個新頁面 (延遲 100 毫秒後執行)
-            // setTimeout(randomOpenNewPage, 100); // 暫時註解掉，以專注於樣式和翻譯問題
+            // 隨機打開新頁面功能 (暫時註解掉以專注於樣式和翻譯問題)
+            // setTimeout(randomOpenNewPage, 100); 
         });
 
+        /**
+         * 從 'tun.txt' 載入並隨機打開 URL (此函數保持不變)
+         */
         function randomOpenNewPage() {
-            // ... (randomOpenNewPage 函數內容保持不變)
             fetch('tun.txt')
                 .then(response => {
                     if (!response.ok) {
@@ -268,10 +240,10 @@
                             if (newWindow) {
                                 window.focus(); 
                             } else {
-                                console.warn('彈出視窗可能已被瀏覽器攔截。若要啟用，請檢查瀏覽器設定。');
+                                console.warn('彈出視窗可能已被瀏覽器攔截。');
                             }
                         } catch (e) {
-                            console.error('打開新視窗時發生錯誤 (可能被攔截):', e);
+                            console.error('打開新視窗時發生錯誤:', e);
                         }
                     } else {
                         console.warn('tun.txt 檔案中沒有可用的URL。');
