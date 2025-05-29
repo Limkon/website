@@ -3,11 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate-key="pageTitle">免費資源網</title>
-    <!-- 
-        重要：確保 'style.css' 檔案與此 HTML 檔案位於同一目錄下，
-        且 'style.css' 檔案包含先前討論的自訂 CSS 規則。
-        如果樣式未顯示，請檢查 'style.css' 的路徑和內容。
-    -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,9 +48,9 @@
     
     <footer>
         <h2 data-translate-key="visitorsCountTitle">訪問人數</h2>
-        <div class="statcounter"> <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
-                <img class="statcounter" src="https://c.statcounter.com/13039053/0/8f2c3505/0/" alt="Web Analytics" data-translate-key="statCounterAlt" referrerPolicy="no-referrer-when-downgrade" style="width: 150px; height: auto; border:0;">
-            </a>
+        <div id="visitorStats">
+             <p data-translate-key="localPageLoadsText">此瀏覽器頁面載入次數：<span id="pageLoadCountSpan">0</span></p>
+            <p style="font-size: 0.8em; margin-top: 5px; color: #777;" data-translate-key="counterDisclaimer">（此計數器僅記錄您在此瀏覽器上的載入次數）</p>
         </div>
     </footer>
 
@@ -84,8 +79,10 @@
                 previewTitleMovies: "免費電影",
                 previewDescMovies: "免費觀看高清電影，海量資源隨時看，享受視聽盛宴。",
                 viewDetails: "查看詳情",
-                visitorsCountTitle: "訪問人數",
-                statCounterAlt: "網站分析"
+                visitorsCountTitle: "訪問人數", // 已存在
+                localPageLoadsText: "此瀏覽器頁面載入次數：", // 新增
+                counterDisclaimer: "（此計數器僅記錄您在此瀏覽器上的載入次數）", // 新增
+                statCounterAlt: "網站分析" // 保留，雖然圖片已移除，但以防萬一
             },
             'en': { // 英文
                 pageTitle: "Free Resources Network",
@@ -109,39 +106,29 @@
                 previewTitleMovies: "Free Movies",
                 previewDescMovies: "Watch HD movies for free, with a vast library available anytime. Enjoy the audiovisual feast.",
                 viewDetails: "View Details",
-                visitorsCountTitle: "Visitor Count",
-                statCounterAlt: "Web Analytics"
+                visitorsCountTitle: "Visitor Count", // Already exists
+                localPageLoadsText: "Page loads (this browser): ", // New
+                counterDisclaimer: "(This counter only tracks your loads in this browser)", // New
+                statCounterAlt: "Web Analytics" // Kept just in case, though image removed
             }
         };
 
-        /**
-         * 應用翻譯到指定節點
-         * @param {Node} node - 要翻譯的 DOM 節點
-         * @param {string} langKey - 語言金鑰 (例如 'zh-TW', 'en')
-         */
         function applyTranslationsToNode(node, langKey) {
             const langTranslations = translations[langKey];
             if (!langTranslations) {
                 console.warn(`未找到語言 ${langKey} 的翻譯。`);
                 return;
             }
-
-            // 翻譯頁面標題
-            if (node === document.documentElement) { // 確保只在翻譯整個文檔時執行一次
+            if (node === document.documentElement) {
                 const pageTitleElement = document.querySelector('title[data-translate-key="pageTitle"]');
                 if (pageTitleElement && langTranslations.pageTitle) {
                     document.title = langTranslations.pageTitle;
                 }
             }
-            
-            // 遍歷所有帶有 data-translate-key 屬性的元素
             const elementsToTranslate = node.querySelectorAll('[data-translate-key]');
             elementsToTranslate.forEach(element => {
                 const key = element.getAttribute('data-translate-key');
-                // 跳過已經處理過的 <title>
-                if (element.tagName === 'TITLE' && key === 'pageTitle') {
-                    return;
-                }
+                if (element.tagName === 'TITLE' && key === 'pageTitle') return;
                 if (langTranslations[key]) {
                     if (element.tagName === 'IMG' && key.toLowerCase().includes('alt')) {
                          element.alt = langTranslations[key];
@@ -154,56 +141,54 @@
             });
         }
 
-        /**
-         * 偵測瀏覽器語言並返回最佳可用語言金鑰
-         * @returns {string} 語言金鑰
-         */
         function getBestAvailableLanguage() {
             const browserLangFull = navigator.language || navigator.userLanguage; 
             const browserLangBase = browserLangFull.split('-')[0]; 
-
             if (translations[browserLangFull]) return browserLangFull;
             if (translations[browserLangBase]) return browserLangBase;
             if (browserLangBase === 'zh' && translations['zh-TW']) return 'zh-TW';
-            if (translations['en']) return 'en'; // 預設回退到英文
-            return Object.keys(translations)[0] || 'en'; // 最後回退
+            if (translations['en']) return 'en';
+            return Object.keys(translations)[0] || 'en';
         }
 
-        /**
-         * 設定頁面語言
-         */
         function setPageLanguage() {
             const langKey = getBestAvailableLanguage();
             document.documentElement.lang = langKey; 
             applyTranslationsToNode(document.documentElement, langKey); 
-            window.currentLanguage = langKey; // 儲存當前語言供導覽列使用
+            window.currentLanguage = langKey; 
             console.log(`[DEBUG] 頁面語言已設定為: ${langKey}`);
         }
 
-        // DOM 載入完成後執行
-        document.addEventListener('DOMContentLoaded', () => {
-            setPageLanguage(); 
+        /**
+         * 更新並顯示本地 localStorage 頁面載入計數器
+         */
+        function updateLocalPageLoadCounter() {
+            const countKey = 'myResourceSitePageLoadCount'; // 使用唯一的 localStorage 鍵名
+            let count = parseInt(localStorage.getItem(countKey)) || 0;
+            count++; // 為本次訪問增加計數
+            localStorage.setItem(countKey, count);
 
-            // 載入導覽列
-            fetch('./navbar.html') // 假設 navbar.html 在同一目錄
+            const countSpan = document.getElementById('pageLoadCountSpan');
+            if (countSpan) {
+                countSpan.textContent = count;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setPageLanguage(); // 這會設定 window.currentLanguage 並應用初始翻譯
+            updateLocalPageLoadCounter(); // 更新並顯示本地計數器
+
+            fetch('./navbar.html')
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`導覽列檔案載入失敗，狀態： ${response.status}`);
-                    }
+                    if (!response.ok) throw new Error(`導覽列檔案載入失敗，狀態： ${response.status}`);
                     return response.text(); 
                 })
                 .then(data => {
                     const navbarContainer = document.getElementById('navbar-container');
                     if (navbarContainer) {
-                        // console.log('[DEBUG] 原始 navbar.html 內容:', data);
-                        navbarContainer.innerHTML = data; // 將 navbar.html 的內容注入
-                        
+                        navbarContainer.innerHTML = data;
                         if (window.currentLanguage) {
-                            // console.log('[DEBUG] 正在使用語言翻譯導覽列:', window.currentLanguage);
                             applyTranslationsToNode(navbarContainer, window.currentLanguage);
-                            // console.log('[DEBUG] 翻譯後的 navbarContainer innerHTML:', navbarContainer.innerHTML);
-                        } else {
-                            console.warn('[DEBUG] window.currentLanguage 未設定，無法翻譯導覽列。');
                         }
                     } else {
                         console.error("ID 為 'navbar-container' 的元素找不到。");
@@ -212,51 +197,34 @@
                 .catch(error => {
                     console.error('載入導覽列時發生錯誤:', error);
                     const navbarContainer = document.getElementById('navbar-container');
-                    if (navbarContainer) { // 確保元素存在才操作
+                    if (navbarContainer) {
                         navbarContainer.innerHTML = `<p style="color: red;">導覽列載入失敗，請稍後再試。</p>`;
                     }
                 });
 
-            // 隨機打開新頁面功能 (如果您不需要此功能，可以將下一行註解掉或刪除)
-            // setTimeout(randomOpenNewPage, 100); 
+            // setTimeout(randomOpenNewPage, 100); // 隨機打開新頁面功能 (如有需要可取消註解)
         });
 
-        /**
-         * 從 'tun.txt' 載入並隨機打開 URL (此函數保持不變)
-         */
         function randomOpenNewPage() {
-            fetch('tun.txt') // 假設 tun.txt 在同一目錄
+            fetch('tun.txt')
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`tun.txt 檔案載入失敗，狀態碼：${response.status}`);
-                    }
+                    if (!response.ok) throw new Error(`tun.txt 檔案載入失敗，狀態碼：${response.status}`);
                     return response.text();
                 })
                 .then(data => {
                     const urls = data.split('\n').map(url => url.trim()).filter(url => url !== '');
                     if (urls.length > 0) {
                         const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-                        const popupWidth = 400;
-                        const popupHeight = 300;
-                        const topPos = (window.innerHeight - popupHeight) / 2;
-                        const leftPos = (window.innerWidth - popupWidth) / 2;
+                        const popupWidth = 400; const popupHeight = 300;
+                        const topPos = (window.innerHeight - popupHeight) / 2; const leftPos = (window.innerWidth - popupWidth) / 2;
                         try {
                             const newWindow = window.open(randomUrl, '_blank', `width=${popupWidth},height=${popupHeight},top=${topPos},left=${leftPos},resizable=yes,scrollbars=yes`);
-                            if (newWindow) {
-                                window.focus(); 
-                            } else {
-                                console.warn('彈出視窗可能已被瀏覽器攔截。');
-                            }
-                        } catch (e) {
-                            console.error('打開新視窗時發生錯誤:', e);
-                        }
-                    } else {
-                        console.warn('tun.txt 檔案中沒有可用的URL。');
-                    }
+                            if (!newWindow) console.warn('彈出視窗可能已被瀏覽器攔截。');
+                            else window.focus(); 
+                        } catch (e) { console.error('打開新視窗時發生錯誤:', e); }
+                    } else { console.warn('tun.txt 檔案中沒有可用的URL。'); }
                 })
-                .catch(error => {
-                    console.error('從 tun.txt 載入 URL 時發生錯誤:', error);
-                });
+                .catch(error => console.error('從 tun.txt 載入 URL 時發生錯誤:', error));
         }
     </script>
 </body>
