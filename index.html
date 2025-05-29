@@ -3,6 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate-key="pageTitle">免費資源網</title>
+    <!-- 
+        重要：確保 'style.css' 檔案與此 HTML 檔案位於同一目錄下，
+        且 'style.css' 檔案包含您在 Canvas "建議的 style.css (美化版)" 中選取的 CSS 規則。
+    -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,53 +17,69 @@
     </header>
 
     <main>
-        <div class="container">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 data-translate-key="heroTitle">探索無限可能</h2>
+                <p data-translate-key="heroSubtitle">您的一站式免費資源中心，發掘優質工具、服務與資訊。</p>
+                <a href="#main-content-area" class="hero-button" data-translate-key="heroButton">開始探索</a>
+            </div>
+        </section>
+
+        <div class="container" id="main-content-area">
             <div class="resource-item">
-                <h2 data-translate-key="previewTitleNetdisk">免費網盤</h2>
+                <div class="resource-icon" data-icon-key="netdiskIcon">☁️</div> <h2 data-translate-key="previewTitleNetdisk">免費網盤</h2>
                 <p data-translate-key="previewDescNetdisk">這裡提供多種免費雲端儲存服務的簡要介紹。</p>
                 <a href="pan/wangpan.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
             <div class="resource-item">
+                <div class="resource-icon" data-icon-key="emailIcon">✉️</div>
                 <h2 data-translate-key="previewTitleEmail">免費電子郵箱</h2>
                 <p data-translate-key="previewDescEmail">提供免費的電子郵件服務，具備便捷管理功能與大容量儲存空間。</p>
                 <a href="email/you.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
             <div class="resource-item">
+                <div class="resource-icon" data-icon-key="domainIcon">🌐</div>
                 <h2 data-translate-key="previewTitleDomain">免費域名</h2>
                 <p data-translate-key="previewDescDomain">獲取免費的域名註冊服務，輕鬆建立您自己的網站。</p>
                 <a href="domain/yumian.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
             <div class="resource-item">
+                <div class="resource-icon" data-icon-key="dealsIcon">🎁</div>
                 <h2 data-translate-key="previewTitleDeals">免費羊毛</h2>
                 <p data-translate-key="previewDescDeals">搜羅網路上各種免費活動與優惠，薅羊毛、拿好禮。</p>
                 <a href="sleep/yang.html" data-translate-key="viewDetails">查看詳情</a>
             </div>
 
             <div class="resource-item">
+                <div class="resource-icon" data-icon-key="moviesIcon">🎬</div>
                 <h2 data-translate-key="previewTitleMovies">免費電影</h2>
                 <p data-translate-key="previewDescMovies">免費觀看高清電影，海量資源隨時看，享受視聽盛宴。</p>
                 <a href="movie/mov.html" data-translate-key="viewDetails">查看詳情</a>
+            </div>
+             <div class="resource-item more-resources-placeholder">
+                <h2 data-translate-key="moreResourcesTitle">更多精彩</h2>
+                <p data-translate-key="moreResourcesDesc">敬請期待，我們將不斷擴充資源庫！</p>
+                <span class="coming-soon-badge" data-translate-key="comingSoon">即將推出</span>
             </div>
         </div>
     </main>
     
     <footer>
-        <h2 data-translate-key="visitorsCountTitle">訪問人數</h2>
-        <div id="visitorStats">
-             <p data-translate-key="localPageLoadsText">此瀏覽器頁面載入次數：<span id="pageLoadCountSpan">0</span></p>
-            <p style="font-size: 0.8em; margin-top: 5px; color: #777;" data-translate-key="counterDisclaimer">（此計數器僅記錄您在此瀏覽器上的載入次數）</p>
-        </div>
+        <p data-translate-key="footerText">&copy; 2024-2025 免費資源網. 版權所有.</p>
     </footer>
 
     <script>
         // 翻譯字典 (繁體中文, 英文)
         const translations = {
             'zh-TW': { // 繁體中文
-                pageTitle: "免費資源網",
+                pageTitle: "免費資源網 - 探索無限可能",
                 mainTitle: "免費資源網",
+                heroTitle: "探索無限可能",
+                heroSubtitle: "您的一站式免費資源中心，發掘優質工具、服務與資訊。",
+                heroButton: "開始探索",
                 navIndex: "首頁",
                 navFreeDeals: "免費羊毛",
                 navFreeNetdisk: "免費網盤",
@@ -78,15 +98,18 @@
                 previewDescDeals: "搜羅網路上各種免費活動與優惠，薅羊毛、拿好禮。",
                 previewTitleMovies: "免費電影",
                 previewDescMovies: "免費觀看高清電影，海量資源隨時看，享受視聽盛宴。",
+                moreResourcesTitle: "更多精彩",
+                moreResourcesDesc: "敬請期待，我們將不斷擴充資源庫！",
+                comingSoon: "即將推出",
                 viewDetails: "查看詳情",
-                visitorsCountTitle: "訪問人數", // 已存在
-                localPageLoadsText: "此瀏覽器頁面載入次數：", // 新增
-                counterDisclaimer: "（此計數器僅記錄您在此瀏覽器上的載入次數）", // 新增
-                statCounterAlt: "網站分析" // 保留，雖然圖片已移除，但以防萬一
+                footerText: "&copy; 2024-2025 免費資源網. 版權所有."
             },
             'en': { // 英文
-                pageTitle: "Free Resources Network",
+                pageTitle: "Free Resources Network - Explore Endless Possibilities",
                 mainTitle: "Free Resources Network",
+                heroTitle: "Explore Endless Possibilities",
+                heroSubtitle: "Your one-stop hub for quality free tools, services, and information.",
+                heroButton: "Start Exploring",
                 navIndex: "Home",
                 navFreeDeals: "Freebies & Deals",
                 navFreeNetdisk: "Free Cloud Storage",
@@ -105,11 +128,11 @@
                 previewDescDeals: "Collect various free online activities and discounts. Grab good deals.",
                 previewTitleMovies: "Free Movies",
                 previewDescMovies: "Watch HD movies for free, with a vast library available anytime. Enjoy the audiovisual feast.",
+                moreResourcesTitle: "More Coming Soon",
+                moreResourcesDesc: "Stay tuned as we continuously expand our resource library!",
+                comingSoon: "Coming Soon",
                 viewDetails: "View Details",
-                visitorsCountTitle: "Visitor Count", // Already exists
-                localPageLoadsText: "Page loads (this browser): ", // New
-                counterDisclaimer: "(This counter only tracks your loads in this browser)", // New
-                statCounterAlt: "Web Analytics" // Kept just in case, though image removed
+                footerText: "&copy; 2024-2025 Free Resources Network. All rights reserved."
             }
         };
 
@@ -129,7 +152,10 @@
             elementsToTranslate.forEach(element => {
                 const key = element.getAttribute('data-translate-key');
                 if (element.tagName === 'TITLE' && key === 'pageTitle') return;
-                if (langTranslations[key]) {
+                
+                if (key === 'footerText' && langTranslations[key]) {
+                     element.innerHTML = langTranslations[key]; 
+                } else if (langTranslations[key]) {
                     if (element.tagName === 'IMG' && key.toLowerCase().includes('alt')) {
                          element.alt = langTranslations[key];
                     } else {
@@ -159,24 +185,8 @@
             console.log(`[DEBUG] 頁面語言已設定為: ${langKey}`);
         }
 
-        /**
-         * 更新並顯示本地 localStorage 頁面載入計數器
-         */
-        function updateLocalPageLoadCounter() {
-            const countKey = 'myResourceSitePageLoadCount'; // 使用唯一的 localStorage 鍵名
-            let count = parseInt(localStorage.getItem(countKey)) || 0;
-            count++; // 為本次訪問增加計數
-            localStorage.setItem(countKey, count);
-
-            const countSpan = document.getElementById('pageLoadCountSpan');
-            if (countSpan) {
-                countSpan.textContent = count;
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            setPageLanguage(); // 這會設定 window.currentLanguage 並應用初始翻譯
-            updateLocalPageLoadCounter(); // 更新並顯示本地計數器
+            setPageLanguage(); 
 
             fetch('./navbar.html')
                 .then(response => {
@@ -201,31 +211,17 @@
                         navbarContainer.innerHTML = `<p style="color: red;">導覽列載入失敗，請稍後再試。</p>`;
                     }
                 });
-
-            // setTimeout(randomOpenNewPage, 100); // 隨機打開新頁面功能 (如有需要可取消註解)
+            
+            const heroButton = document.querySelector('.hero-button');
+            if(heroButton) {
+                heroButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
         });
-
-        function randomOpenNewPage() {
-            fetch('tun.txt')
-                .then(response => {
-                    if (!response.ok) throw new Error(`tun.txt 檔案載入失敗，狀態碼：${response.status}`);
-                    return response.text();
-                })
-                .then(data => {
-                    const urls = data.split('\n').map(url => url.trim()).filter(url => url !== '');
-                    if (urls.length > 0) {
-                        const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-                        const popupWidth = 400; const popupHeight = 300;
-                        const topPos = (window.innerHeight - popupHeight) / 2; const leftPos = (window.innerWidth - popupWidth) / 2;
-                        try {
-                            const newWindow = window.open(randomUrl, '_blank', `width=${popupWidth},height=${popupHeight},top=${topPos},left=${leftPos},resizable=yes,scrollbars=yes`);
-                            if (!newWindow) console.warn('彈出視窗可能已被瀏覽器攔截。');
-                            else window.focus(); 
-                        } catch (e) { console.error('打開新視窗時發生錯誤:', e); }
-                    } else { console.warn('tun.txt 檔案中沒有可用的URL。'); }
-                })
-                .catch(error => console.error('從 tun.txt 載入 URL 時發生錯誤:', error));
-        }
     </script>
 </body>
 </html>
