@@ -212,7 +212,7 @@
                     }
                 });
 
-            // 隨機打開新頁面功能 (暫時註解掉以專注於樣式和翻譯問題)
+            // 隨機打開新頁面功能 (如果您不需要此功能，可以將下一行註解掉或刪除)
             // setTimeout(randomOpenNewPage, 100); 
         });
 
@@ -220,7 +220,7 @@
          * 從 'tun.txt' 載入並隨機打開 URL (此函數保持不變)
          */
         function randomOpenNewPage() {
-            fetch('tun.txt')
+            fetch('tun.txt') // 假設 tun.txt 在同一目錄
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`tun.txt 檔案載入失敗，狀態碼：${response.status}`);
