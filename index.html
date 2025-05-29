@@ -1,181 +1,311 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="zh-TW"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>免费资源网</title>
-    <link rel="stylesheet" href="style.css">
+    <title data-translate-key="pageTitle">免費資源網</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CSS 自訂配置 (可選)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Arial', 'sans-serif'], // 設定預設字體
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        /* 样式调整 */
+        /* 額外的全局樣式，例如平滑滾動 */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* 確保背景漸變充滿整個視窗高度 */
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6dd5ed, #2193b0); /* 渐变背景 */
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            /* 交织背景效果 */
-            background: 
-                repeating-linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.1), 
-                rgba(255, 255, 255, 0.1) 10px, 
-                rgba(0, 123, 255, 0.5) 10px, 
-                rgba(0, 123, 255, 0.5) 20px); /* 交织色 */
-            padding: 30px 0; /* 调整导航栏上下内边距 */
-            color: white;
-        }
-
-        h1 {
-            margin: 0;
-            text-align: center;
-            color: #fff;
-            margin-top: 10px; /* 增加上边距，靠上一点 */
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .preview-container {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .preview {
-            width: 300px;
-            height: 200px;
-            margin: 10px;
-            border-radius: 8px; /* 添加圆角 */
-            padding: 15px;
-            background: linear-gradient(135deg, #f0f4f8, #e0e7ec); /* 渐变背景色，浅蓝和浅灰 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-            color: #333;
-            overflow: hidden;
-        }
-
-        .preview a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
+            min-height: 100vh;
         }
     </style>
 </head>
-<body>
-    <!-- 顶部导航栏 -->
-    <header>
-        <div class="container">
-            <h1>免费资源网</h1>
-            <div id="navbar"></div> <!-- 导航栏加载位置 -->
+<body class="bg-gradient-to-br from-sky-300 to-cyan-500 text-white font-sans">
+    <header class="bg-sky-700/50 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-white mb-2 sm:mb-0" data-translate-key="mainTitle">免費資源網</h1>
+            <div id="navbar" class="text-center">
+                </div>
         </div>
     </header>
 
-    <!-- 预览部分，显示在导航栏下方 -->
-    <div class="preview-container container">
-        <div class="preview">
-            <h2>免费网盘</h2>
-            <p>这里是免费网盘的简要介绍。提供多种免费存储服务。</p>
-            <a href="pan/wangpan.html">查看详情</a>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="preview-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleNetdisk">免費網盤</h2>
+                    <p class="text-gray-600 mb-4" data-translate-key="previewDescNetdisk">這裡提供多種免費雲端儲存服務的簡要介紹。</p>
+                </div>
+                <a href="pan/wangpan.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            </div>
+
+            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleEmail">免費電子郵箱</h2>
+                    <p class="text-gray-600 mb-4" data-translate-key="previewDescEmail">提供免費的電子郵件服務，具備便捷管理功能與大容量儲存空間。</p>
+                </div>
+                <a href="email/you.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            </div>
+
+            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleDomain">免費域名</h2>
+                    <p class="text-gray-600 mb-4" data-translate-key="previewDescDomain">獲取免費的域名註冊服務，輕鬆建立您自己的網站。</p>
+                </div>
+                <a href="domain/yumian.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            </div>
+
+            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleDeals">免費羊毛</h2>
+                    <p class="text-gray-600 mb-4" data-translate-key="previewDescDeals">搜羅網路上各種免費活動與優惠，薅羊毛、拿好禮。</p>
+                </div>
+                <a href="sleep/yang.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            </div>
+
+            <div class="preview bg-gradient-to-br from-slate-100 to-gray-200 text-gray-800 rounded-xl shadow-xl p-6 flex flex-col justify-between hover:shadow-2xl transition-shadow duration-300">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-2" data-translate-key="previewTitleMovies">免費電影</h2>
+                    <p class="text-gray-600 mb-4" data-translate-key="previewDescMovies">免費觀看高清電影，海量資源隨時看，享受視聽盛宴。</p>
+                </div>
+                <a href="movie/mov.html" class="inline-block bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors duration-300 text-center" data-translate-key="viewDetails">查看詳情</a>
+            </div>
         </div>
-        <div class="preview">
-            <h2>免费电子邮箱</h2>
-            <p>提供免费的电子邮件服务，便捷的管理功能和大容量存储空间。</p>
-            <a href="email/you.html">查看详情</a>
-        </div>
-        <div class="preview">
-            <h2>免费域名</h2>
-            <p>获取免费的域名注册服务，轻松建立自己的网站。</p>
-            <a href="domain/yumian.html">查看详情</a>
-        </div>
-        <div class="preview">
-            <h2>免费羊毛</h2>
-            <p>搜罗网络中的各种免费活动和优惠，薅羊毛拿好礼。</p>
-            <a href="sleep/yang.html">查看详情</a>
-        </div>
-        <div class="preview">
-            <h2>免费电影</h2>
-            <p>免费看高清电影，海量资源随时观看，享受视听盛宴。</p>
-            <a href="movie/mov.html">查看详情</a>
-        </div>
-    </div>
+    </main>
     
-    <!-- 访问人数标题 -->
-    <div style="text-align: center; margin-top: 20px; position: relative;">
-        <h2 style="font-size: 24px;">访问人数</h2>
-        <div class="statcounter" style="position: absolute; left: 50%; transform: translateX(-50%);">
-            <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
-                <img class="statcounter" src="https://c.statcounter.com/13039053/0/8f2c3505/0/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade" style="width: 150px; height: auto;">
-            </a>
+    <footer class="py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-semibold mb-4 text-white" data-translate-key="visitorsCountTitle">訪問人數</h2>
+            <div class="statcounter inline-block bg-white/20 p-2 rounded-lg shadow-md">
+                <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+                    <img class="statcounter" src="https://c.statcounter.com/13039053/0/8f2c3505/0/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade" style="width: 150px; height: auto;">
+                    </a>
+            </div>
         </div>
-    </div>
+    </footer>
 
     <script>
-        // 加载导航栏
-        fetch('./navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error loading navbar:', error);
-            });
+        // 翻譯字典 (繁體中文, 英文)
+        const translations = {
+            'zh-TW': { // 繁體中文
+                pageTitle: "免費資源網",
+                mainTitle: "免費資源網",
+                navHome: "首頁", // 假設導覽列有這些項目
+                navAbout: "關於我們",
+                navServices: "服務項目",
+                navContact: "聯絡我們",
+                previewTitleNetdisk: "免費網盤",
+                previewDescNetdisk: "這裡提供多種免費雲端儲存服務的簡要介紹。",
+                previewTitleEmail: "免費電子郵箱",
+                previewDescEmail: "提供免費的電子郵件服務，具備便捷管理功能與大容量儲存空間。",
+                previewTitleDomain: "免費域名",
+                previewDescDomain: "獲取免費的域名註冊服務，輕鬆建立您自己的網站。",
+                previewTitleDeals: "免費羊毛",
+                previewDescDeals: "搜羅網路上各種免費活動與優惠，薅羊毛、拿好禮。",
+                previewTitleMovies: "免費電影",
+                previewDescMovies: "免費觀看高清電影，海量資源隨時看，享受視聽盛宴。",
+                viewDetails: "查看詳情",
+                visitorsCountTitle: "訪問人數",
+                statCounterAlt: "網站分析"
+            },
+            'en': { // 英文
+                pageTitle: "Free Resources Network",
+                mainTitle: "Free Resources Network",
+                navHome: "Home",
+                navAbout: "About Us",
+                navServices: "Services",
+                navContact: "Contact Us",
+                previewTitleNetdisk: "Free Cloud Storage",
+                previewDescNetdisk: "A brief introduction to various free cloud storage services.",
+                previewTitleEmail: "Free Email",
+                previewDescEmail: "Provides free email services with convenient management and large storage capacity.",
+                previewTitleDomain: "Free Domain",
+                previewDescDomain: "Get free domain registration services and easily build your own website.",
+                previewTitleDeals: "Freebies & Deals",
+                previewDescDeals: "Collect various free online activities and discounts. Grab good deals.",
+                previewTitleMovies: "Free Movies",
+                previewDescMovies: "Watch HD movies for free, with a vast library available anytime. Enjoy the audiovisual feast.",
+                viewDetails: "View Details",
+                visitorsCountTitle: "Visitor Count",
+                statCounterAlt: "Web Analytics"
+            }
+            // 您可以在此處加入更多語言的翻譯，例如： 'ja': { ... }
+        };
 
-        // 随机打开一个新页面，并保持当前页面为焦点
-        function randomOpenNewPage() {
-            fetch('tun.txt')
-                .then(response => response.text())
+        /**
+         * 根據提供的語言金鑰，應用翻譯到指定 DOM 節點下的所有帶有 data-translate-key 屬性的元素。
+         * @param {Node} node - 要在其下查找並翻譯元素的 DOM 節點。
+         * @param {string} langKey - 語言金鑰 (例如 'zh-TW', 'en')。
+         */
+        function applyTranslationsToNode(node, langKey) {
+            const langTranslations = translations[langKey];
+            if (!langTranslations) {
+                console.warn(`找不到語言 ${langKey} 的翻譯。將使用預設語言。`);
+                // 可以選擇一個預設語言，例如 'en' 或 'zh-TW'
+                // langTranslations = translations['en'] || translations[Object.keys(translations)[0]];
+                // if(!langTranslations) return; // 如果連預設語言都沒有，則不進行任何操作
+                return;
+            }
+
+            // 如果節點是 document.documentElement (即整個 HTML 文檔)，則單獨處理 <title>
+            if (node === document.documentElement) {
+                const pageTitleElement = document.querySelector('title[data-translate-key="pageTitle"]');
+                if (pageTitleElement && langTranslations.pageTitle) {
+                    document.title = langTranslations.pageTitle;
+                }
+            }
+            
+            const elementsToTranslate = node.querySelectorAll('[data-translate-key]');
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                // 跳過已經在上面單獨處理過的 <title> 元素
+                if (element.tagName === 'TITLE' && key === 'pageTitle') {
+                    return;
+                }
+                if (langTranslations[key]) {
+                    // 如果是圖片且鍵名為 alt 相關，則設定 alt 屬性
+                    if (element.tagName === 'IMG' && key.toLowerCase().includes('alt')) {
+                         element.alt = langTranslations[key];
+                    } else {
+                        element.textContent = langTranslations[key];
+                    }
+                } else {
+                    console.warn(`在語言 '${langKey}' 中找不到鍵 '${key}' 的翻譯。`);
+                }
+            });
+        }
+
+        /**
+         * 偵測瀏覽器語言並返回最佳可用語言金鑰。
+         * @returns {string} 最佳可用語言金鑰。
+         */
+        function getBestAvailableLanguage() {
+            const browserLangFull = navigator.language || navigator.userLanguage; // 例如 "zh-TW", "en-US"
+            const browserLangBase = browserLangFull.split('-')[0]; // 例如 "zh", "en"
+
+            // 1. 嘗試完整語言代碼 (例如 "zh-TW")
+            if (translations[browserLangFull]) {
+                return browserLangFull;
+            }
+            // 2. 嘗試基礎語言代碼 (例如 "zh", "en")
+            if (translations[browserLangBase]) {
+                return browserLangBase;
+            }
+            // 3. 特別回退：如果基礎語言是中文 ('zh')，且有 'zh-TW' 翻譯，則使用 'zh-TW'
+            if (browserLangBase === 'zh' && translations['zh-TW']) {
+                return 'zh-TW';
+            }
+            // 4. 預設回退到英文 (如果 'en' 翻譯存在)
+            if (translations['en']) {
+                return 'en';
+            }
+            // 5. 最後回退到翻譯字典中的第一個語言，或者一個硬編碼的預設值 (例如 'en')
+            return Object.keys(translations)[0] || 'en';
+        }
+
+        /**
+         * 設定頁面語言：設定 HTML lang 屬性並應用翻譯。
+         */
+        function setPageLanguage() {
+            const langKey = getBestAvailableLanguage();
+            document.documentElement.lang = langKey; // 設定 <html lang="...">
+            applyTranslationsToNode(document.documentElement, langKey); // 應用翻譯到整個文檔
+            window.currentLanguage = langKey; // 儲存當前語言，供導覽列等後續操作使用
+        }
+
+        // 當 DOM 內容完全載入後執行
+        document.addEventListener('DOMContentLoaded', () => {
+            setPageLanguage(); // 設定初始頁面語言
+
+            // 非同步載入導覽列 HTML 內容
+            fetch('./navbar.html')
+                .then(response => {
+                    if (!response.ok) {
+                        // 如果 HTTP 狀態碼不是 2xx，則拋出錯誤
+                        throw new Error(`導覽列檔案載入失敗，狀態碼：${response.status}`);
+                    }
+                    return response.text(); // 將回應轉換為文字
+                })
                 .then(data => {
-                    // 将读取到的内容按换行符分割为数组
-                    const urls = data.split('\n').filter(url => url.trim() !== '');
-                    if (urls.length > 0) {
-                        // 随机选择一个URL
-                        const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-                        // 设置弹出窗口的宽度和高度
-                        const width = 400;
-                        const height = 300;
-                        const left = (window.innerWidth - width) / 2;
-                        const top = (window.innerHeight - height) / 2;
-                        // 在新窗口中打开随机选择的URL，并设置窗口大小及位置
-                        const newWindow = window.open(randomUrl, '_blank', `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`);
-                        // 保持当前窗口为活动窗口
-                        if (newWindow) {
-                            window.focus();
-                        } else {
-                            console.error('弹出窗口被浏览器拦截');
+                    const navbarDiv = document.getElementById('navbar');
+                    if (navbarDiv) {
+                        navbarDiv.innerHTML = data; // 將載入的 HTML 注入到導覽列 div 中
+                        // 對新載入的導覽列內容應用翻譯
+                        if (window.currentLanguage) {
+                            applyTranslationsToNode(navbarDiv, window.currentLanguage);
                         }
                     } else {
-                        console.error('文件中没有可用的URL');
+                        console.error("ID 為 'navbar' 的元素未找到。");
                     }
                 })
                 .catch(error => {
-                    console.error('Error loading URLs from tun.txt:', error);
+                    console.error('載入導覽列時發生錯誤:', error);
+                    const navbarDiv = document.getElementById('navbar');
+                    if (navbarDiv) {
+                        // 在頁面上顯示錯誤訊息，方便用戶知道問題
+                        navbarDiv.innerHTML = `<p class="text-red-400">導覽列載入失敗，請稍後再試。</p>`;
+                    }
+                });
+
+            // 隨機打開一個新頁面 (延遲 100 毫秒後執行)
+            // 請注意：原始碼中的註解提到 "1分鐘=60000毫秒"，但實際使用的是 100 毫秒。
+            // 此處保留 100 毫秒的設定，與原始邏輯一致。
+            // 重要提示：未經用戶明確互動（如點擊）而自動彈出視窗通常會被現代瀏覽器攔截。
+            setTimeout(randomOpenNewPage, 100); 
+        });
+
+        /**
+         * 從 'tun.txt' 檔案中讀取 URL 列表，隨機選擇一個並在新視窗中打開。
+         * 保持當前頁面為焦點。
+         */
+        function randomOpenNewPage() {
+            fetch('tun.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`tun.txt 檔案載入失敗，狀態碼：${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // 將讀取到的內容按換行符分割，並過濾掉空行
+                    const urls = data.split('\n').map(url => url.trim()).filter(url => url !== '');
+                    
+                    if (urls.length > 0) {
+                        const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+                        const popupWidth = 400;
+                        const popupHeight = 300;
+                        // 計算彈出視窗在螢幕中央的位置
+                        const topPos = (window.innerHeight - popupHeight) / 2;
+                        const leftPos = (window.innerWidth - popupWidth) / 2;
+                        
+                        try {
+                            // 嘗試打開新視窗
+                            const newWindow = window.open(randomUrl, '_blank', `width=${popupWidth},height=${popupHeight},top=${topPos},left=${leftPos},resizable=yes,scrollbars=yes`);
+                            if (newWindow) {
+                                window.focus(); // 嘗試將焦點保持在主視窗
+                            } else {
+                                // 這種情況通常發生在彈窗被瀏覽器攔截時
+                                console.warn('彈出視窗可能已被瀏覽器攔截。若要啟用，請檢查瀏覽器設定。');
+                            }
+                        } catch (e) {
+                            // 捕獲其他可能導致 window.open 失敗的錯誤
+                            console.error('打開新視窗時發生錯誤 (可能被攔截):', e);
+                        }
+                    } else {
+                        console.warn('tun.txt 檔案中沒有可用的URL。');
+                    }
+                })
+                .catch(error => {
+                    console.error('從 tun.txt 載入 URL 時發生錯誤:', error);
                 });
         }
-
-        // 页面加载后1分钟后自动在新窗口中打开随机网页
-        setTimeout(randomOpenNewPage, 100); // 1分钟=60000毫秒
     </script>
 </body>
 </html>
